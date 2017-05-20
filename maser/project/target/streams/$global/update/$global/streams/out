@@ -7698,7 +7698,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-sbt#template-resolver;0.1!template-resolver.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.10.6!jline.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 863ms :: artifacts dl 16ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 976ms :: artifacts dl 26ms[0m
 [0m[[0mdebug[0m] [0m	report for default#maser-build;0.1-SNAPSHOT compile produced in /home/ashida/git/maser-bot/maser/project/target/resolution-cache/reports/default-maser-build-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#maser-build;0.1-SNAPSHOT runtime produced in /home/ashida/git/maser-bot/maser/project/target/resolution-cache/reports/default-maser-build-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#maser-build;0.1-SNAPSHOT test produced in /home/ashida/git/maser-bot/maser/project/target/resolution-cache/reports/default-maser-build-test.xml[0m
@@ -7712,5 +7712,5 @@
 [0m[[0mdebug[0m] [0m	report for default#maser-build;0.1-SNAPSHOT docs produced in /home/ashida/git/maser-bot/maser/project/target/resolution-cache/reports/default-maser-build-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#maser-build;0.1-SNAPSHOT pom produced in /home/ashida/git/maser-bot/maser/project/target/resolution-cache/reports/default-maser-build-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for default#maser-build;0.1-SNAPSHOT scala-tool produced in /home/ashida/git/maser-bot/maser/project/target/resolution-cache/reports/default-maser-build-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (863ms resolve - 16ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (976ms resolve - 26ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

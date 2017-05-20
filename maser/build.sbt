@@ -10,7 +10,7 @@ resolvers ++= Seq(
 )
 
 libraryDependencies ++= Seq(
-  "info.mukel" %% "telegrambot4s" % "2.2.7-SNAPSHOT",
+  "info.mukel" %% "telegrambot4s" % "2.9.0-SNAPSHOT",
   "com.typesafe.scala-logging" %% "scala-logging" % "3.5.0",
   "org.slf4j" % "slf4j-api" % "1.7.5",
   "org.slf4j" % "slf4j-simple" % "1.7.5"

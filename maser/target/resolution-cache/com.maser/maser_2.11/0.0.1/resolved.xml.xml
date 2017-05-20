@@ -4,7 +4,7 @@
 		module="maser_2.11"
 		revision="0.0.1"
 		status="integration"
-		publication="20170514143931"
+		publication="20170520125359"
 	>
 		<description>
 		Maser
@@ -35,7 +35,7 @@
 		<dependency org="org.scala-lang" name="scala-compiler" rev="2.11.8" conf="scala-tool->default,optional(default)"/>
 		<dependency org="org.scala-lang" name="scala-library" rev="2.11.8" conf="scala-tool->default,optional(default);compile->default(compile)"/>
 		<dependency org="org.scalatest" name="scalatest_2.11" rev="3.0.1" conf="test->default(compile)"/>
-		<dependency org="info.mukel" name="telegrambot4s_2.11" rev="2.2.7-SNAPSHOT" conf="compile->default(compile)"/>
+		<dependency org="info.mukel" name="telegrambot4s_2.11" rev="2.9.0-SNAPSHOT" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.scala-logging" name="scala-logging_2.11" rev="3.5.0" conf="compile->default(compile)"/>
 		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.5" conf="compile->default(compile)"/>
 		<dependency org="org.slf4j" name="slf4j-simple" rev="1.7.5" conf="compile->default(compile)"/>

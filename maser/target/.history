@@ -1,3 +1,9 @@
 ensimeMegaUpdate
 compile
 run
+ensimeMegaUpdate
+sbt compile
+compile
+;reload; */*:dumpStructureTo /tmp/sbt-structure.xml download resolveClassifiers
+; {file:/home/ashida/git/maser-bot/maser/}root/products; {file:/home/ashida/git/maser-bot/maser/}root/test:products
+run
