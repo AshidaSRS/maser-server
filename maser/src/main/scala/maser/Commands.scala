@@ -57,3 +57,4 @@ case class MaserCommands(token: String) extends Methods{
   )
   command(c = "ctest", desc = "testin", response = "Test Inline Buttons", board = b)
 }
+
