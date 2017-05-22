@@ -7,7 +7,7 @@ import com.typesafe.scalalogging.Logger
 import models._
 
 
-trait Methods extends TelegramBot with Polling with Commands with UtilsCommand{
+trait Methods extends TelegramBot with Polling with Commands {
 
   type InlineKeyFile = List[InlineKeyboardButton]
 

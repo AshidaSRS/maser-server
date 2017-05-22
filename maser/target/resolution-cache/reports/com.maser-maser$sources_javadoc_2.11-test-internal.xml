@@ -7,8 +7,20 @@
 		revision="0.0.1"
 		conf="test-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
-		date="20170520125404"/>
+		date="20170521215845"/>
 	<dependencies>
+		<module organisation="com.typesafe.akka" name="akka-testkit_2.11">
+			<revision name="2.4.1" status="release" pubdate="20151127125152" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="28">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="3543" time="0" location="/home/ashida/.ivy2/cache/com.typesafe.akka/akka-testkit_2.11/ivy-2.4.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-testkit_2.11/2.4.1/akka-testkit_2.11-2.4.1.pom"/>
+				<caller organisation="com.maser" name="maser$sources_javadoc_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="2.4.1" rev-constraint-default="2.4.1" rev-constraint-dynamic="2.4.1" callerrev="0.0.1"/>
+				<artifacts>
+					<artifact name="akka-testkit_2.11" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="31757" time="0" location="/home/ashida/.ivy2/cache/com.typesafe.akka/akka-testkit_2.11/srcs/akka-testkit_2.11-2.4.1-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-testkit_2.11/2.4.1/akka-testkit_2.11-2.4.1-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
 		<module organisation="org.slf4j" name="slf4j-simple">
 			<revision name="1.7.5" status="release" pubdate="20130325215226" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.slf4j.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="13">
 				<license name="MIT License" url="http://www.opensource.org/licenses/mit-license.php"/>
@@ -25,22 +37,22 @@
 			</revision>
 		</module>
 		<module organisation="info.mukel" name="telegrambot4s_2.11">
-			<revision name="2.9.0-SNAPSHOT" status="integration" pubdate="20170520034644" resolver="sonatype-snapshots" artresolver="sonatype-snapshots" homepage="https://github.com/mukel/telegrambot4s" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="10">
+			<revision name="2.9.0-SNAPSHOT" status="integration" pubdate="20170520034644" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/mukel/telegrambot4s" downloaded="false" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="10">
 				<license name="Apache 2.0 License" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
-				<metadata-artifact status="successful" details="" size="3330" time="398" location="/home/ashida/.ivy2/cache/info.mukel/telegrambot4s_2.11/ivy-2.9.0-SNAPSHOT.xml" searched="true" original-local-location="/home/ashida/.ivy2/cache/info.mukel/telegrambot4s_2.11/ivy-2.9.0-SNAPSHOT.xml.original" origin-is-local="false" origin-location="https://oss.sonatype.org/content/repositories/snapshots/info/mukel/telegrambot4s_2.11/2.9.0-SNAPSHOT/telegrambot4s_2.11-2.9.0-SNAPSHOT.pom"/>
+				<metadata-artifact status="no" details="" size="3837" time="0" location="/home/ashida/.ivy2/cache/info.mukel/telegrambot4s_2.11/ivy-2.9.0-SNAPSHOT.xml" searched="true" origin-is-local="false" origin-location="https://oss.sonatype.org/content/repositories/snapshots/info/mukel/telegrambot4s_2.11/2.9.0-SNAPSHOT/telegrambot4s_2.11-2.9.0-SNAPSHOT.pom"/>
 				<caller organisation="com.maser" name="maser$sources_javadoc_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="2.9.0-SNAPSHOT" rev-constraint-default="2.9.0-SNAPSHOT" rev-constraint-dynamic="2.9.0-SNAPSHOT" callerrev="0.0.1"/>
 				<artifacts>
-					<artifact name="telegrambot4s_2.11" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="91356" time="1958" location="/home/ashida/.ivy2/cache/info.mukel/telegrambot4s_2.11/srcs/telegrambot4s_2.11-2.9.0-SNAPSHOT-sources.jar">
+					<artifact name="telegrambot4s_2.11" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="91356" time="0" location="/home/ashida/.ivy2/cache/info.mukel/telegrambot4s_2.11/srcs/telegrambot4s_2.11-2.9.0-SNAPSHOT-sources.jar">
 						<origin-location is-local="false" location="https://oss.sonatype.org/content/repositories/snapshots/info/mukel/telegrambot4s_2.11/2.9.0-SNAPSHOT/telegrambot4s_2.11-2.9.0-SNAPSHOT-sources.jar"/>
 					</artifact>
-					<artifact name="telegrambot4s_2.11" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="1022130" time="1811" location="/home/ashida/.ivy2/cache/info.mukel/telegrambot4s_2.11/docs/telegrambot4s_2.11-2.9.0-SNAPSHOT-javadoc.jar">
+					<artifact name="telegrambot4s_2.11" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="1022130" time="0" location="/home/ashida/.ivy2/cache/info.mukel/telegrambot4s_2.11/docs/telegrambot4s_2.11-2.9.0-SNAPSHOT-javadoc.jar">
 						<origin-location is-local="false" location="https://oss.sonatype.org/content/repositories/snapshots/info/mukel/telegrambot4s_2.11/2.9.0-SNAPSHOT/telegrambot4s_2.11-2.9.0-SNAPSHOT-javadoc.jar"/>
 					</artifact>
 				</artifacts>
 			</revision>
 		</module>
 		<module organisation="org.scalatest" name="scalatest_2.11">
-			<revision name="3.0.1" status="release" pubdate="20161110045601" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scalatest.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="29">
+			<revision name="3.0.1" status="release" pubdate="20161110045601" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scalatest.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="30">
 				<license name="the Apache License, ASL Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
 				<metadata-artifact status="no" details="" size="5287" time="0" location="/home/ashida/.ivy2/cache/org.scalatest/scalatest_2.11/ivy-3.0.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scalatest/scalatest_2.11/3.0.1/scalatest_2.11-3.0.1.pom"/>
 				<caller organisation="com.maser" name="maser$sources_javadoc_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="3.0.1" rev-constraint-default="3.0.1" rev-constraint-dynamic="3.0.1" callerrev="0.0.1"/>
@@ -55,7 +67,7 @@
 			</revision>
 		</module>
 		<module organisation="org.scalactic" name="scalactic_2.11">
-			<revision name="3.0.1" status="release" pubdate="20161110045324" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scalatest.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="28">
+			<revision name="3.0.1" status="release" pubdate="20161110045324" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scalatest.org" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="29">
 				<license name="the Apache License, ASL Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
 				<metadata-artifact status="no" details="" size="2967" time="0" location="/home/ashida/.ivy2/cache/org.scalactic/scalactic_2.11/ivy-3.0.1.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/org/scalactic/scalactic_2.11/3.0.1/scalactic_2.11-3.0.1.pom"/>
 				<caller organisation="com.maser" name="maser$sources_javadoc_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="3.0.1" rev-constraint-default="3.0.1" rev-constraint-dynamic="3.0.1" callerrev="0.0.1"/>
@@ -235,7 +247,7 @@
 			</revision>
 		</module>
 		<module organisation="com.typesafe.akka" name="akka-http_2.11">
-			<revision name="10.0.5" status="release" pubdate="20170318121013" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="8">
+			<revision name="10.0.5" status="release" pubdate="20170318121013" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="8">
 				<license name="Apache-2.0" url="https://opensource.org/licenses/Apache-2.0"/>
 				<metadata-artifact status="no" details="" size="2791" time="0" location="/home/ashida/.ivy2/cache/com.typesafe.akka/akka-http_2.11/ivy-10.0.5.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-http_2.11/10.0.5/akka-http_2.11-10.0.5.pom"/>
 				<caller organisation="com.maser" name="maser$sources_javadoc_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="10.0.5" rev-constraint-default="10.0.5" rev-constraint-dynamic="10.0.5" callerrev="0.0.1"/>
@@ -400,7 +412,7 @@
 			</revision>
 		</module>
 		<module organisation="com.typesafe.akka" name="akka-actor_2.11">
-			<revision name="2.4.18" status="release" pubdate="20170502105741" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" extra-info.apiURL="http://doc.akka.io/api/akka/2.4.18" downloaded="false" searched="false" default="false" conf="compile, runtime(*), master(compile), runtime, compile(*), master" position="1">
+			<revision name="2.4.18" status="release" pubdate="20170502105741" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io/" extra-info.apiURL="http://doc.akka.io/api/akka/2.4.18" downloaded="false" searched="false" default="false" conf="default, compile, runtime(*), master(compile), runtime, default(compile), compile(*), master" position="1">
 				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
 				<metadata-artifact status="no" details="" size="3103" time="0" location="/home/ashida/.ivy2/cache/com.typesafe.akka/akka-actor_2.11/ivy-2.4.18.xml" searched="false" origin-is-local="false" origin-location="https://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.11/2.4.18/akka-actor_2.11-2.4.18.pom"/>
 				<caller organisation="com.maser" name="maser$sources_javadoc_2.11" conf="test, compile, provided, test-internal, runtime, optional" rev="2.4.18" rev-constraint-default="2.4.18" rev-constraint-dynamic="2.4.18" callerrev="0.0.1" extra-info.apiURL="http://doc.akka.io/api/akka/2.4.18"/>

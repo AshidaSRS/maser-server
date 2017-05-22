@@ -4,7 +4,7 @@
 		module="maser_2.11"
 		revision="0.0.1"
 		status="integration"
-		publication="20170520125359"
+		publication="20170522024221"
 	>
 		<description>
 		Maser
@@ -39,5 +39,19 @@
 		<dependency org="com.typesafe.scala-logging" name="scala-logging_2.11" rev="3.5.0" conf="compile->default(compile)"/>
 		<dependency org="org.slf4j" name="slf4j-api" rev="1.7.5" conf="compile->default(compile)"/>
 		<dependency org="org.slf4j" name="slf4j-simple" rev="1.7.5" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-testkit_2.11" rev="2.4.1" conf="test->default(compile)">
+			<artifact name="akka-testkit_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+			<artifact name="akka-testkit_2.11" type="jar" ext="jar" conf="*"/>
+		</dependency>
+		<dependency org="com.typesafe.akka" name="akka-actor_2.11" rev="2.4.6" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-http_2.11" rev="10.0.4" conf="compile->default(compile)">
+			<artifact name="akka-http_2.11" type="doc" ext="jar" conf="docs" e:classifier="javadoc"/>
+			<artifact name="akka-http_2.11" type="src" ext="jar" conf="sources" e:classifier="sources"/>
+			<artifact name="akka-http_2.11" type="jar" ext="jar" conf="*"/>
+		</dependency>
+		<dependency org="org.scala-lang.modules" name="scala-xml_2.11" rev="1.0.2" conf="compile->default(compile)"/>
+		<dependency org="org.scala-lang.modules" name="scala-parser-combinators_2.11" rev="1.0.1" conf="compile->default(compile)"/>
+		<dependency org="net.databinder.dispatch" name="dispatch-core_2.11" rev="0.11.3" conf="compile->default(compile)"/>
+		<dependency org="com.github.marklister" name="base64_2.11" rev="0.2.3" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

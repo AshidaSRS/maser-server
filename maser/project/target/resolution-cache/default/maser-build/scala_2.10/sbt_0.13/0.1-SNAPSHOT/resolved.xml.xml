@@ -4,7 +4,7 @@
 		module="maser-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20170520221443"
+		publication="20170521222854"
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>
@@ -42,5 +42,6 @@
 			<artifact name="global-plugins" type="src" ext="jar" conf="sources" e:classifier="sources"/>
 			<artifact name="global-plugins" type="doc" ext="jar" conf="docs" e:classifier="javadoc"/>
 		</dependency>
+		<dependency org="org.scalaxb" name="sbt-scalaxb" rev="1.5.0" conf="compile->default(compile)" e:sbtVersion="0.13" e:scalaVersion="2.10"/>
 	</dependencies>
 </ivy-module>

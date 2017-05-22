@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:element name="entry">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="episode" type="xs:int"></xs:element>
+                <xs:element name="status" type="xs:int"></xs:element>
+                <xs:element name="score" type="xs:int"></xs:element>
+                <xs:element name="storage_type"></xs:element>
+                <xs:element name="storage_value"></xs:element>
+                <xs:element name="times_rewatched"></xs:element>
+                <xs:element name="rewatch_value"></xs:element>
+                <xs:element name="date_start"></xs:element>
+                <xs:element name="date_finish"></xs:element>
+                <xs:element name="priority"></xs:element>
+                <xs:element name="enable_discussion"></xs:element>
+                <xs:element name="enable_rewatching"></xs:element>
+                <xs:element name="comments"></xs:element>
+                <xs:element name="tags" type="xs:string"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
