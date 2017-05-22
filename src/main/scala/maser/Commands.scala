@@ -25,7 +25,7 @@ trait Methods extends TelegramBot with Polling with Commands {
   }
 
   def genInlineButton[T](t: String, tag: T): InlineKeyboardButton = {
-    import maser.CommandTypes.ButtonImplicits._
+    import maser.ButtonTransforms.ButtonImplicits._
     val button = InlineKeyboardButton(text = t)
     tag match {
       case t:URL => button.toURLButton(t)
