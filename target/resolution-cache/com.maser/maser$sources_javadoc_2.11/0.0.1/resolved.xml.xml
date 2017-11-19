@@ -4,7 +4,7 @@
 		module="maser$sources_javadoc_2.11"
 		revision="0.0.1"
 		status="integration"
-		publication="20170522222650"
+		publication="20170522224721"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>

@@ -7516,7 +7516,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang.modules#scala-xml_2.11;1.0.4!scala-xml_2.11.jar(doc)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] jline#jline;2.12.1!jline.jar(src)[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] jline#jline;2.12.1!jline.jar(doc)[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 7625ms :: artifacts dl 25ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 3502ms :: artifacts dl 86ms[0m
 [0m[[0mdebug[0m] [0m	report for com.maser#maser$sources_javadoc_2.11;0.0.1 compile produced in /home/ashida/git/maser-bot/target/resolution-cache/reports/com.maser-maser$sources_javadoc_2.11-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for com.maser#maser$sources_javadoc_2.11;0.0.1 runtime produced in /home/ashida/git/maser-bot/target/resolution-cache/reports/com.maser-maser$sources_javadoc_2.11-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for com.maser#maser$sources_javadoc_2.11;0.0.1 test produced in /home/ashida/git/maser-bot/target/resolution-cache/reports/com.maser-maser$sources_javadoc_2.11-test.xml[0m
@@ -7530,4 +7530,4 @@
 [0m[[0mdebug[0m] [0m	report for com.maser#maser$sources_javadoc_2.11;0.0.1 docs produced in /home/ashida/git/maser-bot/target/resolution-cache/reports/com.maser-maser$sources_javadoc_2.11-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for com.maser#maser$sources_javadoc_2.11;0.0.1 pom produced in /home/ashida/git/maser-bot/target/resolution-cache/reports/com.maser-maser$sources_javadoc_2.11-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for com.maser#maser$sources_javadoc_2.11;0.0.1 scala-tool produced in /home/ashida/git/maser-bot/target/resolution-cache/reports/com.maser-maser$sources_javadoc_2.11-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (7625ms resolve - 25ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (3502ms resolve - 86ms download)[0m
