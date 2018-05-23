@@ -15,7 +15,7 @@ object Dependencies {
   )
 
   val telegram = Seq(
-    "info.mukel" %% "telegrambot4s" % "3.0.14"
+    "info.mukel" %% "telegrambot4s" % "3.0.15-SNAPSHOT"
   )
 
   val test = Seq(
