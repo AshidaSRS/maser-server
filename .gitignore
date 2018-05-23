@@ -90,6 +90,9 @@ cmake-build-debug/
 .idea/
 # mpeltonen/sbt-idea plugin
 .idea_modules/
+target/
+project/project/
+project/target/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
