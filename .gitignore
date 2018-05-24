@@ -122,4 +122,6 @@ fabric.properties
 *.class
 *.log
 
+bot.token
+
 # End of https://www.gitignore.io/api/scala,emacs,ensime,intellij
