@@ -1,4 +1,5 @@
 import wvlet.log.Logger
+import info.mukel.telegrambot4s.api.declarative.ToCommand
 import com.typesafe.config._
 import scala.concurrent.Future
 import info.mukel.telegrambot4s.models.Message
@@ -24,14 +25,18 @@ object MainApp extends TelegramBot with Polling with Commands with Callbacks
 
   log.debug(s"Token: $token")
 
-  def hola(test: String)(msg: Message) = {
-    log.debug(s"${msg.from.flatMap(_.username).get} request 'hola'")
-    reply(test)(msg)
+  def hola(test: String)(msg: Message) = reply(test)(msg)
+
+  def createCommand[T : ToCommand](command: T, f: Message => Future[Message]) = {
+    onCommand(command){implicit msg =>
+      log.debug(s"${msg.from.flatMap(_.username).get} request $command")
+      f(msg)
+    }
   }
 
-  onCommand('hola)(hola("hi"))
+  createCommand('meh, hola("Meh"))
 
-  log.info("Empesamos :D")
+  log.info("Maser start")
 
   MainApp.run()
 }
