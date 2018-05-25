@@ -17,7 +17,7 @@ object Dependencies {
   lazy val testVersion = "3.0.1"
   lazy val slf4jVersion = "1.6.4"
   lazy val telegramVersion = "3.0.15-SNAPSHOT"
-
+  lazy val freesVersion = "0.8.0"
 
   val log = Seq(
     "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingVersion
@@ -39,7 +39,6 @@ object Dependencies {
     "com.typesafe.slick"                 %% "slick-codegen"                              % slickVersion,
     "com.typesafe.slick"                 %% "slick-hikaricp"                             % hikariVersion,
     "org.flywaydb"                        % "flyway-core"                                % flywayVersion
-
   )
 
   val catsDependencies = Seq(
@@ -54,7 +53,12 @@ object Dependencies {
     ("com.davegurnell"                   %% "bulletin"                                   % bulletinVersion ).exclude("org.typelevel", "scala-library")
   )
 
+  val freestyleDependencies = Seq (
+    "io.frees" %% "frees-core" % freesVersion,
+    "io.frees" %% "frees-slick" % freesVersion
+  )
+
   val core =
     log ++ telegram ++ test ++ databaseDependencies ++ catsDependencies ++
-  scalazDependencies ++ bulletinDependencies
+  scalazDependencies ++ bulletinDependencies ++ freestyleDependencies
 }

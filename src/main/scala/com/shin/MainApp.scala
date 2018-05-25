@@ -1,13 +1,13 @@
-import wvlet.log.Logger
-import info.mukel.telegrambot4s.api.declarative.ToCommand
-import com.typesafe.config._
-import scala.concurrent.Future
-import info.mukel.telegrambot4s.models.Message
-import info.mukel.telegrambot4s.api.declarative.{Commands, Callbacks}
-import info.mukel.telegrambot4s.api.{TelegramBot, Polling}
-import slick.jdbc.MySQLProfile.api.Database
 import com.shin.db.migration._
 import com.shin.utils.LoggerIntegration
+import com.typesafe.config._
+import info.mukel.telegrambot4s.api.declarative.{Callbacks, Commands, ToCommand}
+import info.mukel.telegrambot4s.api.{Polling, TelegramBot}
+import info.mukel.telegrambot4s.models.Message
+import slick.jdbc.MySQLProfile.api._
+import wvlet.log.Logger
+
+import scala.concurrent.Future
 import scala.io.Source
 
 object MainApp extends TelegramBot with Polling with Commands with Callbacks
@@ -25,17 +25,18 @@ object MainApp extends TelegramBot with Polling with Commands with Callbacks
 
   log.debug(s"Token: $token")
 
-  def hola(test: String)(msg: Message) = reply(test)(msg)
+   def hola(test: String)(msg: Message) = reply(test)(msg)
 
-  def createCommand[T : ToCommand](command: T, f: Message => Future[Message]) = {
-    onCommand(command){implicit msg =>
-      log.debug(s"${msg.from.flatMap(_.username).get} request $command")
-      f(msg)
-    }
-  }
+   def createCommand[T : ToCommand](command: T, f: Message => Future[Message]) = {
+     onCommand(command){implicit msg =>
+       log.debug(s"${msg.from.flatMap(_.username).get} request $command")
+       f(msg)
+     }
+   }
 
   createCommand('meh, hola("Meh"))
 
+  Manga.f.map(x => log.info(x))
   log.info("Maser start")
 
   MainApp.run()
