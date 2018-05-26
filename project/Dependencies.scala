@@ -38,7 +38,8 @@ object Dependencies {
     "com.typesafe.slick"                 %% "slick"                                      % slickVersion,
     "com.typesafe.slick"                 %% "slick-codegen"                              % slickVersion,
     "com.typesafe.slick"                 %% "slick-hikaricp"                             % hikariVersion,
-    "org.flywaydb"                        % "flyway-core"                                % flywayVersion
+    "org.flywaydb"                        % "flyway-core"                                % flywayVersion,
+    "postgresql" % "postgresql" % "9.1-901-1.jdbc4"
   )
 
   val catsDependencies = Seq(
@@ -55,7 +56,7 @@ object Dependencies {
 
   val freestyleDependencies = Seq (
     "io.frees" %% "frees-core" % freesVersion,
-    "io.frees" %% "frees-slick" % freesVersion
+    "io.frees" %% "frees-doobie" % freesVersion
   )
 
   val core =

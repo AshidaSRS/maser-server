@@ -21,7 +21,7 @@ object MainApp extends TelegramBot with Polling with Commands with Callbacks
 
   implicit val globalConfig: Config = ConfigFactory.load()
   implicit val db: Database = SchemaMigration.doMigration
-  TablesGenerator.doGeneration
+  //TablesGenerator.doGeneration
 
   log.debug(s"Token: $token")
 
@@ -36,7 +36,7 @@ object MainApp extends TelegramBot with Polling with Commands with Callbacks
 
   createCommand('meh, hola("Meh"))
 
-  Manga.f.map(x => log.info(x))
+  MangaActions.f.map(x => log.info(x))
   log.info("Maser start")
 
   MainApp.run()

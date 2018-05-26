@@ -1,36 +1,44 @@
-CREATE TABLE `manga` (
-  `id` BIGINT NOT NULL,
-  `name` VARCHAR(45) NULL,
-  `created` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`));
+CREATE TABLE "maser"."manga" (
+    "id" bigint,
+    "name" text,
+    "year" int,
+    "created" timestamp DEFAULT current_date,
+    "updated" timestamp DEFAULT current_date,
+    PRIMARY KEY ("id")
+);
 
-CREATE TABLE `anime` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `created` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`));
+CREATE TABLE "maser"."anime" (
+    "id" bigint,
+    "name" text,
+    "year" int,
+    "created" timestamp DEFAULT current_date,
+    "updated" timestamp DEFAULT current_date,
+    PRIMARY KEY ("id")
+);
 
-CREATE TABLE `manhwa` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `created` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`));
+CREATE TABLE "maser"."manhwa" (
+    "id" bigint,
+    "name" text,
+    "year" int,
+    "created" timestamp DEFAULT current_date,
+    "updated" timestamp DEFAULT current_date,
+    PRIMARY KEY ("id")
+);
 
-CREATE TABLE `television_serie` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `year` INT NOT NULL,
-  `created` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`));
+CREATE TABLE "maser"."television_serie" (
+    "id" bigint,
+    "name" text,
+    "year" int,
+    "created" timestamp DEFAULT current_date,
+    "updated" timestamp DEFAULT current_date,
+    PRIMARY KEY ("id")
+);
 
-CREATE TABLE `movie` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `year` INT NOT NULL,
-  `created` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`));
+CREATE TABLE "maser"."movie" (
+    "id" bigint,
+    "name" text,
+    "year" int,
+    "created" timestamp DEFAULT current_date,
+    "updated" timestamp DEFAULT current_date,
+    PRIMARY KEY ("id")
+);

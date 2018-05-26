@@ -5,7 +5,7 @@ import wvlet.log.Logger
 import com.shin.utils.LoggerIntegration
 import com.typesafe.config.Config
 import org.flywaydb.core.Flyway
-import slick.jdbc.MySQLProfile.api._
+import slick.jdbc.PostgresProfile.api._
 
 
 object SchemaMigration extends LoggerIntegration {
@@ -13,9 +13,9 @@ object SchemaMigration extends LoggerIntegration {
   override lazy val log = Logger("SchemaMigration")
 
   def doMigration(implicit config: Config): Database = {
-    val url = config.getString("db.url")
-    val user = config.getString("db.user")
-    val passwd = config.getString("db.password")
+    val url = config.getString("db.properties.url")
+    val user = config.getString("db.properties.user")
+    val passwd = config.getString("db.properties.password")
     val schemaName = config.getString("db_name")
     val migrationsPath = "filesystem:src/main/resources/db/migration"
 
