@@ -8,9 +8,9 @@ trait TelevisionSerieRepository[F[_]] {
 
   def insert(tv: TelevisionSerie): F[Option[TelevisionSerie]]
 
-  def get(id: Int): F[Option[TelevisionSerie]]
+  def get(id: Long): F[Option[TelevisionSerie]]
 
-  def delete(id: Int): F[Int]
+  def delete(id: Long): F[Int]
 
   def update(tv: TelevisionSerie): F[Option[TelevisionSerie]]
 

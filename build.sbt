@@ -11,6 +11,6 @@ addCompilerPlugin("org.scalameta" % "paradise" % "3.0.0-M10" cross CrossVersion.
 
 crossScalaVersions := Seq("2.11.11", scalaVersion.value)
 
-libraryDependencies := Dependencies.core
+libraryDependencies ++= Dependencies.core
 
 testOptions += Tests.Argument(TestFrameworks.JUnit, "-v")

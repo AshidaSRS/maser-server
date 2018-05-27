@@ -8,9 +8,9 @@ trait MangaRepository[F[_]] {
 
   def insert(manga: Manga): F[Option[Manga]]
 
-  def get(id: Int): F[Option[Manga]]
+  def get(id: Long): F[Option[Manga]]
 
-  def delete(id: Int): F[Int]
+  def delete(id: Long): F[Int]
 
   def update(manga: Manga): F[Option[Manga]]
 

@@ -13,7 +13,7 @@ object AnimeQueries {
           VALUES (${input.name}, ${input.year})
        """.update
 
-  def getQuery(id: Int): Query0[Anime] =
+  def getQuery(id: Long): Query0[Anime] =
     sql"""SELECT name, year, id, created, updated FROM anime WHERE id = $id"""
       .query[Anime]
 
@@ -24,7 +24,7 @@ object AnimeQueries {
           WHERE id = ${input.id}
        """.update
 
-  def deleteQuery(id: Int): Update0 =
+  def deleteQuery(id: Long): Update0 =
     sql"""DELETE FROM anime WHERE id = $id""".update
 
   val listQuery: Query0[Anime] =

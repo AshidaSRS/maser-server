@@ -8,9 +8,9 @@ trait ManhwaRepository[F[_]] {
 
   def insert(manhwa: Manhwa): F[Option[Manhwa]]
 
-  def get(id: Int): F[Option[Manhwa]]
+  def get(id: Long): F[Option[Manhwa]]
 
-  def delete(id: Int): F[Int]
+  def delete(id: Long): F[Int]
 
   def update(manhwa: Manhwa): F[Option[Manhwa]]
 
