@@ -4,7 +4,7 @@ import com.typesafe.config._
 import info.mukel.telegrambot4s.api.declarative.{Callbacks, Commands, ToCommand}
 import info.mukel.telegrambot4s.api.{Polling, TelegramBot}
 import info.mukel.telegrambot4s.models.Message
-import slick.jdbc.MySQLProfile.api._
+import slick.jdbc.PostgresProfile.api._
 import wvlet.log.Logger
 
 import scala.concurrent.Future
@@ -36,7 +36,7 @@ object MainApp extends TelegramBot with Polling with Commands with Callbacks
 
   createCommand('meh, hola("Meh"))
 
-  MangaActions.f.map(x => log.info(x))
+  //MangaActions.f.map(x => log.info(x))
   log.info("Maser start")
 
   MainApp.run()

@@ -18,6 +18,8 @@ object Dependencies {
   lazy val slf4jVersion = "1.6.4"
   lazy val telegramVersion = "3.0.15-SNAPSHOT"
   lazy val freesVersion = "0.8.0"
+  lazy val postgreVersion = "9.1-901-1.jdbc4"
+  lazy val doobieVersion = "0.5.3"
 
   val log = Seq(
     "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingVersion
@@ -39,7 +41,11 @@ object Dependencies {
     "com.typesafe.slick"                 %% "slick-codegen"                              % slickVersion,
     "com.typesafe.slick"                 %% "slick-hikaricp"                             % hikariVersion,
     "org.flywaydb"                        % "flyway-core"                                % flywayVersion,
-    "postgresql" % "postgresql" % "9.1-901-1.jdbc4"
+    "postgresql"                          % "postgresql"                                 % postgreVersion,
+    "org.tpolecat" %% "doobie-core"      % doobieVersion,
+    "org.tpolecat" %% "doobie-hikari"    % doobieVersion,
+    "org.tpolecat" %% "doobie-postgres"  % doobieVersion
+
   )
 
   val catsDependencies = Seq(
