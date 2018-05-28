@@ -1,3 +1,4 @@
+
 package com.shin.persistence.runtime
 
 import cats.Monad

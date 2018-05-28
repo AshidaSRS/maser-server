@@ -13,16 +13,16 @@ object Dependencies {
   lazy val slf4jVersion = "1.6.4"
   lazy val telegramVersion = "3.0.15-SNAPSHOT"
   lazy val freesVersion = "0.8.0"
-  lazy val postgreVersion = "9.1-901-1.jdbc4"
+  lazy val postgreVersion = "42.1.1"
   lazy val doobieVersion = "0.5.3"
   lazy val http4sVersion = "0.18.11"
-  lazy val circeVersion = "0.9.3"
+  lazy val circeVersion = "0.10.0-M1"
   lazy val blazeVersion = "0.18.11"
 
   val log = Seq(
-    "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingVersion
-    , "org.slf4j" % "slf4j-simple" % slf4jVersion
-    , "org.wvlet" %% "wvlet-log" % coolLogVersion
+    "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingVersion,
+    "org.slf4j" % "slf4j-simple" % slf4jVersion,
+    "org.wvlet" %% "wvlet-log" % coolLogVersion
   )
 
   val telegram = Seq(
@@ -36,9 +36,8 @@ object Dependencies {
   val databaseDependencies = Seq(
     "com.typesafe.slick" %% "slick" % slickVersion,
     "com.typesafe.slick" %% "slick-codegen"  % slickVersion,
-    "com.typesafe.slick" %% "slick-hikaricp" % hikariVersion,
     "org.flywaydb" % "flyway-core" % flywayVersion,
-    "postgresql"  % "postgresql" % postgreVersion,
+    "org.postgresql"  % "postgresql" % postgreVersion,
     "org.tpolecat" %% "doobie-core" % doobieVersion,
     "org.tpolecat" %% "doobie-hikari"  % doobieVersion,
     "org.tpolecat" %% "doobie-postgres" % doobieVersion
@@ -67,19 +66,17 @@ object Dependencies {
   )
 
   val http = Seq(
-    "org.http4s" % "http4s-core_2.12" % http4sVersion,
+    "org.http4s" %% "http4s-core" % http4sVersion,
     "org.http4s" %% "http4s-circe" % http4sVersion,
     "org.http4s" %% "http4s-dsl" % http4sVersion,
     "org.http4s" %% "http4s-blaze-server" % blazeVersion
   )
 
   val json = Seq(
-    "io.circe" %% "circe-generic" % circeVersion,
-    "io.circe" %% "circe-literal" % circeVersion,
-    "io.circe" %% "circe-parser" % circeVersion
+    "io.circe" %% "circe-generic" % circeVersion
   )
 
   val core =
     log ++ telegram ++ test ++ databaseDependencies ++ catsDependencies ++
-  scalazDependencies ++ freestyleDependencies ++ http ++ json
+  scalazDependencies ++ freestyleDependencies ++ http ++ json ++ other
 }

@@ -1,3 +1,4 @@
+
 package com.shin
 package runtime
 
@@ -15,7 +16,10 @@ import com.shin.persistence.runtime._
 
 import scala.concurrent.ExecutionContext
 
-object implicits extends ExecutionImplicits with RepositoryHandlersImplicits with DoobieImplicits
+object implicits
+    extends ExecutionImplicits
+    with RepositoryHandlersImplicits
+    with DoobieImplicits
 
 trait RepositoryHandlersImplicits {
 

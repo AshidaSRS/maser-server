@@ -1,3 +1,4 @@
+
 package com.shin.persistence
 
 import freestyle.tagless.module

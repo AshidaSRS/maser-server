@@ -1,3 +1,5 @@
+
+
 package com.shin.persistence.runtime.queries
 
 import com.shin.TelevisionSerie

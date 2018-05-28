@@ -1,3 +1,5 @@
+
+
 package com.shin.persistence.runtime.queries
 
 import doobie.implicits.toSqlInterpolator

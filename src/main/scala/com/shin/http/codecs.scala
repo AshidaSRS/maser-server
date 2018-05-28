@@ -9,7 +9,9 @@ import org.http4s.circe._
 
 object codecs {
 
-  implicit def mangaEncoder[F[_]: Applicative]: EntityEncoder[F, Manga] = jsonEncoderOf[F, Manga]
-  implicit def mangaDecoder[F[_]: Sync]: EntityDecoder[F, Manga]        = jsonOf[F, Manga]
+  implicit def mangaEncoder[F[_]: Applicative]: EntityEncoder[F, Manga] =
+    jsonEncoderOf[F, Manga]
+  implicit def mangaDecoder[F[_]: Sync]: EntityDecoder[F, Manga] =
+    jsonOf[F, Manga]
 
 }

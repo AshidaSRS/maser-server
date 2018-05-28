@@ -1,3 +1,5 @@
+
+
 import cats.effect.{Effect, IO}
 import cats.syntax.either._
 import cats.syntax.flatMap._
@@ -28,14 +30,15 @@ object MainApp extends StreamApp[IO] {
 
   import com.shin.runtime.implicits._
 
-  override def stream(args: List[String], requestShutdown: IO[Unit]): fs2.Stream[IO, StreamApp.ExitCode] =
+  override def stream(
+      args: List[String],
+      requestShutdown: IO[Unit]): fs2.Stream[IO, StreamApp.ExitCode] =
     bootstrap[IO].unsafeRunSync()
 
-  def bootstrap[F[_] : Effect]
-  (
-    implicit app: App[F],
-    T: Transactor[F],
-    api: Api[F]): F[fs2.Stream[F, StreamApp.ExitCode]] = {
+  def bootstrap[F[_]: Effect](
+      implicit app: App[F],
+      T: Transactor[F],
+      api: Api[F]): F[fs2.Stream[F, StreamApp.ExitCode]] = {
 
     val services: HttpService[F] = api.endpoints
     val log: LoggingM[F] = app.services.log
