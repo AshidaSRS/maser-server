@@ -78,5 +78,5 @@ object Dependencies {
 
   val core =
     log ++ telegram ++ test ++ databaseDependencies ++ catsDependencies ++
-  scalazDependencies ++ freestyleDependencies ++ http ++ json ++ other
+  scalazDependencies ++ freestyleDependencies ++ http ++ json
 }

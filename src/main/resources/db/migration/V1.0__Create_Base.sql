@@ -1,4 +1,4 @@
-CREATE TABLE "maser"."manga" (
+CREATE TABLE "manga" (
     "id" bigint,
     "name" text,
     "year" int,
@@ -7,7 +7,7 @@ CREATE TABLE "maser"."manga" (
     PRIMARY KEY ("id")
 );
 
-CREATE TABLE "maser"."anime" (
+CREATE TABLE "anime" (
     "id" bigint,
     "name" text,
     "year" int,
@@ -16,7 +16,7 @@ CREATE TABLE "maser"."anime" (
     PRIMARY KEY ("id")
 );
 
-CREATE TABLE "maser"."manhwa" (
+CREATE TABLE "manhwa" (
     "id" bigint,
     "name" text,
     "year" int,
@@ -25,7 +25,7 @@ CREATE TABLE "maser"."manhwa" (
     PRIMARY KEY ("id")
 );
 
-CREATE TABLE "maser"."television_serie" (
+CREATE TABLE "television_serie" (
     "id" bigint,
     "name" text,
     "year" int,
@@ -34,7 +34,7 @@ CREATE TABLE "maser"."television_serie" (
     PRIMARY KEY ("id")
 );
 
-CREATE TABLE "maser"."movie" (
+CREATE TABLE "movie" (
     "id" bigint,
     "name" text,
     "year" int,
