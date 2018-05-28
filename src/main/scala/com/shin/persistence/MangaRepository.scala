@@ -1,7 +1,7 @@
-package com.shin.db.persistence
+package com.shin.persistence
 
+import com.shin.Manga
 import freestyle.tagless.tagless
-import com.shin.db.models.Manga
 
 @tagless(true)
 trait MangaRepository[F[_]] {

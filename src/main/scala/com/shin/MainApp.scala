@@ -1,43 +1,57 @@
-import com.shin.db.migration._
-import com.shin.utils.LoggerIntegration
-import com.typesafe.config._
-import info.mukel.telegrambot4s.api.declarative.{Callbacks, Commands, ToCommand}
-import info.mukel.telegrambot4s.api.{Polling, TelegramBot}
-import info.mukel.telegrambot4s.models.Message
-import slick.jdbc.PostgresProfile.api._
-import wvlet.log.Logger
+import cats.effect.{Effect, IO}
+import cats.syntax.either._
+import cats.syntax.flatMap._
+import cats.syntax.functor._
+import com.shin.http.Api
+import com.shin.persistence.Persistence
+import com.shin.services.Services
+import doobie.util.transactor.Transactor
+import freestyle.tagless.config.ConfigM
+import freestyle.tagless.config.implicits._
+import freestyle.tagless.effects.error.ErrorM
+import freestyle.tagless.effects.error.implicits._
+import freestyle.tagless.logging.LoggingM
+import freestyle.tagless.loggingJVM.log4s.implicits._
+import freestyle.tagless.module
+import fs2.StreamApp
+import org.http4s.HttpService
+import org.http4s.implicits._
+import org.http4s.server.blaze.BlazeBuilder
 
-import scala.concurrent.Future
-import scala.io.Source
+@module
+trait App[F[_]] {
+  val persistence: Persistence[F]
+  val services: Services[F]
+}
 
-object MainApp extends TelegramBot with Polling with Commands with Callbacks
-    with App with LoggerIntegration {
+object MainApp extends StreamApp[IO] {
 
-  override lazy val log = Logger("MainApp")
+  import com.shin.runtime.implicits._
 
-  lazy val token: String = scala.util.Properties
-    .envOrNone("BOT_TOKEN")
-    .getOrElse(Source.fromFile("bot.token").getLines().mkString)
+  override def stream(args: List[String], requestShutdown: IO[Unit]): fs2.Stream[IO, StreamApp.ExitCode] =
+    bootstrap[IO].unsafeRunSync()
 
-  implicit val globalConfig: Config = ConfigFactory.load()
-  implicit val db: Database = SchemaMigration.doMigration
-  //TablesGenerator.doGeneration
+  def bootstrap[F[_] : Effect]
+  (
+    implicit app: App[F],
+    T: Transactor[F],
+    api: Api[F]): F[fs2.Stream[F, StreamApp.ExitCode]] = {
 
-  log.debug(s"Token: $token")
+    val services: HttpService[F] = api.endpoints
+    val log: LoggingM[F] = app.services.log
+    val config: ConfigM[F] = app.services.config
 
-   def hola(test: String)(msg: Message) = reply(test)(msg)
-
-   def createCommand[T : ToCommand](command: T, f: Message => Future[Message]) = {
-     onCommand(command){implicit msg =>
-       log.debug(s"${msg.from.flatMap(_.username).get} request $command")
-       f(msg)
-     }
-   }
-
-  createCommand('meh, hola("Meh"))
-
-  //MangaActions.f.map(x => log.info(x))
-  log.info("Maser start")
-
-  MainApp.run()
+    for {
+      _ <- log.info("Trying to load application.conf")
+      cfg <- config.load
+      host: String = cfg.string("http.host").getOrElse("localhost")
+      port: Int = cfg.int("http.port").getOrElse(8080)
+      _ <- log.debug(s"Host: $host")
+      _ <- log.debug(s"Port: $port")
+    } yield
+      BlazeBuilder[F]
+        .bindHttp(port, host)
+        .mountService(services)
+        .serve
+  }
 }

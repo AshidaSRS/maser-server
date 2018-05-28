@@ -1,6 +1,6 @@
-package com.shin.db.persistence
+package com.shin.persistence
 
-import com.shin.db.models.TelevisionSerie
+import com.shin.TelevisionSerie
 import freestyle.tagless.tagless
 
 @tagless(true)

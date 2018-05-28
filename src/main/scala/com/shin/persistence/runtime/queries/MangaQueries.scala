@@ -1,9 +1,9 @@
-package com.shin.db.persistence.runtime.queries
+package com.shin.persistence.runtime.queries
 
 import doobie.implicits.toSqlInterpolator
 import doobie.util.query.Query0
 import doobie.util.update.Update0
-import com.shin.db.models.Manga
+import com.shin.Manga
 
 object MangaQueries {
 

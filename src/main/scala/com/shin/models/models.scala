@@ -1,4 +1,4 @@
-package com.shin.db.models
+package com.shin
 
 import java.sql.Timestamp
 

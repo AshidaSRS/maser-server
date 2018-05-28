@@ -1,6 +1,6 @@
-package com.shin.db.persistence.runtime.queries
+package com.shin.persistence.runtime.queries
 
-import com.shin.db.models.Anime
+import com.shin.Anime
 import doobie.implicits.toSqlInterpolator
 import doobie.util.query.Query0
 import doobie.util.update.Update0

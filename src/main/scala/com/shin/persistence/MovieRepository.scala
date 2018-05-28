@@ -1,6 +1,6 @@
-package com.shin.db.persistence
+package com.shin.persistence
 
-import com.shin.db.models.Movie
+import com.shin.Movie
 import freestyle.tagless.tagless
 
 @tagless(true)

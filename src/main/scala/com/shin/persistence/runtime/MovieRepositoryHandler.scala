@@ -1,15 +1,15 @@
-package com.shin.db.persistence.runtime
+package com.shin.persistence.runtime
 
 import cats.Monad
 import doobie.implicits._
 import doobie.util.transactor.Transactor
-import com.shin.db.persistence.MovieRepository
-import com.shin.db.models.Movie
+import com.shin.Movie
+import com.shin.persistence.MovieRepository
 
 class MovieRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
     extends MovieRepository.Handler[F] {
 
-  import com.shin.db.persistence.runtime.queries.MovieQueries._
+  import com.shin.persistence.runtime.queries.MovieQueries._
 
   def insert(input: Movie): F[Option[Movie]] =
     insertQuery(input)

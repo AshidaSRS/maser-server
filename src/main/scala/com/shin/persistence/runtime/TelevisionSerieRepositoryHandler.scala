@@ -1,15 +1,15 @@
-package com.shin.db.persistence.runtime
+package com.shin.persistence.runtime
 
 import cats.Monad
 import doobie.implicits._
 import doobie.util.transactor.Transactor
-import com.shin.db.persistence.TelevisionSerieRepository
-import com.shin.db.models.TelevisionSerie
+import com.shin.TelevisionSerie
+import com.shin.persistence.TelevisionSerieRepository
 
 class TelevisionSerieRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
     extends TelevisionSerieRepository.Handler[F] {
 
-  import com.shin.db.persistence.runtime.queries.TelevisionSerieQueries._
+  import com.shin.persistence.runtime.queries.TelevisionSerieQueries._
 
   def insert(input: TelevisionSerie): F[Option[TelevisionSerie]] =
     insertQuery(input)

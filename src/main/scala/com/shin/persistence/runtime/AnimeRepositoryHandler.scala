@@ -1,15 +1,15 @@
-package com.shin.db.persistence.runtime
+package com.shin.persistence.runtime
 
 import cats.Monad
+import com.shin.Anime
 import doobie.implicits._
 import doobie.util.transactor.Transactor
-import com.shin.db.persistence.AnimeRepository
-import com.shin.db.models.Anime
+import com.shin.persistence.AnimeRepository
 
 class AnimeRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
     extends AnimeRepository.Handler[F] {
 
-  import com.shin.db.persistence.runtime.queries.AnimeQueries._
+  import com.shin.persistence.runtime.queries.AnimeQueries._
 
   def insert(input: Anime): F[Option[Anime]] =
     insertQuery(input)

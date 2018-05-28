@@ -4,6 +4,9 @@ version := "0.0.1"
 
 organization := "com.shin"
 
+scalacOptions += "-Xplugin-require:macroparadise"
+scalacOptions in (Compile, console) := Seq()
+
 scalaVersion := "2.12.4"
 ensimeScalaVersion in ThisBuild := "2.12.4"
 

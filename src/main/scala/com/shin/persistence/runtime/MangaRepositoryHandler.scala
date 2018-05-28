@@ -1,15 +1,15 @@
-package com.shin.db.persistence.runtime
+package com.shin.persistence.runtime
 
 import cats.Monad
 import doobie.implicits._
 import doobie.util.transactor.Transactor
-import com.shin.db.persistence.MangaRepository
-import com.shin.db.models.Manga
+import com.shin.persistence.MangaRepository
+import com.shin.Manga
 
 class MangaRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
     extends MangaRepository.Handler[F] {
 
-  import com.shin.db.persistence.runtime.queries.MangaQueries._
+  import com.shin.persistence.runtime.queries.MangaQueries._
 
   def insert(input: Manga): F[Option[Manga]] =
     insertQuery(input)

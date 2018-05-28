@@ -1,9 +1,12 @@
+package com.shin.services
+
 import cats.Monad
 import cats.implicits._
 import freestyle.tagless._
 import freestyle.tagless.logging.LoggingM
-import com.shin.db.models.Manga
-import com.shin.db.persistence.MangaRepository
+import com.shin.Manga
+import com.shin.persistence.MangaRepository
+
 
 @module
 trait MangaService[F[_]] {
@@ -55,7 +58,7 @@ trait MangaService[F[_]] {
       updatedItems <- items.traverse(repo.update)
     } yield updatedItems
 
-  def batchedDestroy(ids: List[Int]): F[Int] =
+  def batchedDestroy(ids: List[Long]): F[Int] =
     for {
       _              <- L.debug(s"Trying to destroy batch $model")
       destroyedItems <- ids.traverse(repo.delete)
