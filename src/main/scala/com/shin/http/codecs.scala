@@ -32,31 +32,22 @@ object codecs {
   implicit val timestampDecoder: Decoder[Timestamp] =
     Decoder.instance(a => a.as[Long].map(new Timestamp(_)))
 
-  implicit def mangaEncoder[F[_]: Applicative]: EntityEncoder[F, Manga] =
-    jsonEncoderOf[F, Manga]
-  implicit def mangaDecoder[F[_]: Sync]: EntityDecoder[F, Manga] =
-    jsonOf[F, Manga]
+  implicit def userContentEncoder[F[_]: Applicative]
+    : EntityEncoder[F, UserContent] =
+    jsonEncoderOf[F, UserContent]
+  implicit def userContentDecoder[F[_]: Sync]: EntityDecoder[F, UserContent] =
+    jsonOf[F, UserContent]
 
-  implicit def manhwaEncoder[F[_]: Applicative]: EntityEncoder[F, Manhwa] =
-    jsonEncoderOf[F, Manhwa]
-  implicit def manhwaDecoder[F[_]: Sync]: EntityDecoder[F, Manhwa] =
-    jsonOf[F, Manhwa]
+  implicit def entertainmentEncoder[F[_]: Applicative]
+    : EntityEncoder[F, Entertainment] =
+    jsonEncoderOf[F, Entertainment]
+  implicit def entertainmentDecoder[F[_]: Sync]
+    : EntityDecoder[F, Entertainment] =
+    jsonOf[F, Entertainment]
 
-  implicit def movieEncoder[F[_]: Applicative]: EntityEncoder[F, Movie] =
-    jsonEncoderOf[F, Movie]
-  implicit def movieDecoder[F[_]: Sync]: EntityDecoder[F, Movie] =
-    jsonOf[F, Movie]
-
-  implicit def televisionSerieEncoder[F[_]: Applicative]
-    : EntityEncoder[F, TelevisionSerie] =
-    jsonEncoderOf[F, TelevisionSerie]
-  implicit def televisionSerieDecoder[F[_]: Sync]
-    : EntityDecoder[F, TelevisionSerie] =
-    jsonOf[F, TelevisionSerie]
-
-  implicit def animeEncoder[F[_]: Applicative]: EntityEncoder[F, Anime] =
-    jsonEncoderOf[F, Anime]
-  implicit def animeDecoder[F[_]: Sync]: EntityDecoder[F, Anime] =
-    jsonOf[F, Anime]
+  implicit def userEncoder[F[_]: Applicative]: EntityEncoder[F, User] =
+    jsonEncoderOf[F, User]
+  implicit def userDecoder[F[_]: Sync]: EntityDecoder[F, User] =
+    jsonOf[F, User]
 
 }

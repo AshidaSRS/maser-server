@@ -19,25 +19,25 @@ package http
 
 import cats.effect.Effect
 import cats.implicits._
-import com.shin.services.MovieService
+import com.shin.services.EntertainmentService
 import io.circe.generic.auto._
 import io.circe.syntax._
 import org.http4s._
 import org.http4s.circe._
 import org.http4s.dsl.Http4sDsl
 
-class MovieApi[F[_]: Effect](implicit service: MovieService[F])
+class EntertainmentApi[F[_]: Effect](implicit service: EntertainmentService[F])
     extends Http4sDsl[F] {
 
   import codecs._
 
-  private val prefix: String = "movies"
+  private val prefix: String = "entertainments"
 
   val endpoints: HttpService[F] = HttpService[F] {
     case GET -> Root / `prefix` / IntVar(id) =>
       service.retrieve(id) flatMap { item =>
         item.fold(NotFound(s"Could not find ${service.model} with $id"))(
-          movie => Ok(movie.asJson))
+          entertainment => Ok(entertainment.asJson))
       }
 
     case GET -> Root / `prefix` =>
@@ -45,16 +45,17 @@ class MovieApi[F[_]: Effect](implicit service: MovieService[F])
 
     case req @ POST -> Root / `prefix` =>
       for {
-        movie <- req.as[Movie]
-        insertedMovie <- service.insert(movie)
-        response <- Ok(insertedMovie.asJson)
+        entertainment <- req.as[Entertainment]
+        insertedEntertainment <- service.insert(entertainment)
+        response <- Ok(insertedEntertainment.asJson)
       } yield response
 
     case req @ PUT -> Root / `prefix` / IntVar(id) =>
       for {
-        movie <- req.as[Movie]
-        updatedMovie <- service.update(movie.copy(id = Some(id)))
-        reponse <- Ok(updatedMovie.asJson)
+        entertainment <- req.as[Entertainment]
+        updatedEntertainment <- service.update(
+          entertainment.copy(id = Some(id)))
+        reponse <- Ok(updatedEntertainment.asJson)
       } yield reponse
 
     case DELETE -> Root / `prefix` / IntVar(id) =>
@@ -62,8 +63,9 @@ class MovieApi[F[_]: Effect](implicit service: MovieService[F])
   }
 }
 
-object MovieApi {
+object EntertainmentApi {
 
   implicit def instance[F[_]: Effect](
-      implicit service: MovieService[F]): MovieApi[F] = new MovieApi[F]
+      implicit service: EntertainmentService[F]): EntertainmentApi[F] =
+    new EntertainmentApi[F]
 }

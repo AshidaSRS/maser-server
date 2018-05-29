@@ -1,44 +1,26 @@
-CREATE TABLE "mangas" (
+create table "entertainments" (
     "id" serial,
     "name" text,
-    "year" int,
-    "created" timestamp DEFAULT current_date,
-    "updated" timestamp DEFAULT current_date,
-    PRIMARY KEY ("id")
+    "rate" int,
+    "model" text not null,
+    "created" timestamp default current_date,
+    "updated" timestamp default current_date,
+    primary key ("id")
 );
 
-CREATE TABLE "animes" (
+create table "users" (
     "id" serial,
-    "name" text,
-    "year" int,
-    "created" timestamp DEFAULT current_date,
-    "updated" timestamp DEFAULT current_date,
-    PRIMARY KEY ("id")
+    "alias" text not null,
+    "telegram" text not null,
+    "created" timestamp default current_date,
+    "updated" timestamp default current_date,
+    primary key ("id")
 );
 
-CREATE TABLE "manhwas" (
-    "id" serial,
-    "name" text,
-    "year" int,
-    "created" timestamp DEFAULT current_date,
-    "updated" timestamp DEFAULT current_date,
-    PRIMARY KEY ("id")
-);
-
-CREATE TABLE "television_series" (
-    "id" serial,
-    "name" text,
-    "year" int,
-    "created" timestamp DEFAULT current_date,
-    "updated" timestamp DEFAULT current_date,
-    PRIMARY KEY ("id")
-);
-
-CREATE TABLE "movies" (
-    "id" serial,
-    "name" text,
-    "year" int,
-    "created" timestamp DEFAULT current_date,
-    "updated" timestamp DEFAULT current_date,
-    PRIMARY KEY ("id")
+create table "user_contents" (
+   "id" serial,
+   "user_id" bigint not null references users (id),
+   "entertainment_id" bigint not null references entertainments(id),
+   "created" timestamp default current_date,
+   primary key ("id")
 );

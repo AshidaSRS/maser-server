@@ -18,36 +18,36 @@ package com.shin.services
 
 import cats.Monad
 import cats.implicits._
+import com.shin.UserContent
+import com.shin.persistence.UserContentRepository
 import freestyle.tagless._
 import freestyle.tagless.logging.LoggingM
-import com.shin.Manga
-import com.shin.persistence.MangaRepository
 
 @module
-trait MangaService[F[_]] {
+trait UserContentService[F[_]] {
 
   implicit val M: Monad[F]
   implicit val L: LoggingM[F]
 
-  val repo: MangaRepository[F]
+  val repo: UserContentRepository[F]
 
-  val model: String = classOf[Manga].getSimpleName
+  val model: String = classOf[UserContent].getSimpleName
 
-  def insert(item: Manga): F[Option[Manga]] =
+  def insert(item: UserContent): F[Option[UserContent]] =
     for {
       _ <- L.debug(s"Trying to insert a $model")
       insertedItem <- repo.insert(item)
       _ <- L.info(s"Tried to add $model")
     } yield insertedItem
 
-  def retrieve(id: Long): F[Option[Manga]] =
+  def retrieve(id: Long): F[Option[UserContent]] =
     for {
       _ <- L.debug(s"Trying to retrieve a $model")
       item <- repo.get(id)
       _ <- L.info(s"Found $model: $item")
     } yield item
 
-  def update(item: Manga): F[Option[Manga]] =
+  def update(item: UserContent): F[Option[UserContent]] =
     for {
       _ <- L.debug(s"Trying to update a $model")
       updatedItem <- repo.update(item)
@@ -61,13 +61,13 @@ trait MangaService[F[_]] {
       _ <- L.info(s"Tried to delete $model")
     } yield deletedItems
 
-  def batchedInsert(items: List[Manga]): F[List[Option[Manga]]] =
+  def batchedInsert(items: List[UserContent]): F[List[Option[UserContent]]] =
     for {
       _ <- L.debug(s"Trying to insert batch $model")
       insertedItems <- items.traverse(repo.insert)
     } yield insertedItems
 
-  def batchedUpdate(items: List[Manga]): F[List[Option[Manga]]] =
+  def batchedUpdate(items: List[UserContent]): F[List[Option[UserContent]]] =
     for {
       _ <- L.debug(s"Trying to update batch $model")
       updatedItems <- items.traverse(repo.update)
@@ -79,7 +79,7 @@ trait MangaService[F[_]] {
       destroyedItems <- ids.traverse(repo.delete)
     } yield destroyedItems.sum
 
-  val list: F[List[Manga]] =
+  val list: F[List[UserContent]] =
     for {
       _ <- L.debug(s"Trying to get all $model models")
       items <- repo.list

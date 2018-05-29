@@ -16,20 +16,20 @@
 
 package com.shin.persistence
 
-import com.shin.Movie
+import com.shin.UserContent
 import freestyle.tagless.tagless
 
 @tagless(true)
-trait MovieRepository[F[_]] {
+trait UserContentRepository[F[_]] {
 
-  def insert(movie: Movie): F[Option[Movie]]
+  def insert(manhwa: UserContent): F[Option[UserContent]]
 
-  def get(id: Long): F[Option[Movie]]
+  def get(id: Long): F[Option[UserContent]]
 
   def delete(id: Long): F[Int]
 
-  def update(movie: Movie): F[Option[Movie]]
+  def update(manhwa: UserContent): F[Option[UserContent]]
 
-  def list: F[List[Movie]]
+  def list: F[List[UserContent]]
 
 }

@@ -18,36 +18,36 @@ package com.shin.services
 
 import cats.Monad
 import cats.implicits._
-import com.shin.Anime
-import com.shin.persistence.AnimeRepository
 import freestyle.tagless._
 import freestyle.tagless.logging.LoggingM
+import com.shin.User
+import com.shin.persistence.UserRepository
 
 @module
-trait AnimeService[F[_]] {
+trait UserService[F[_]] {
 
   implicit val M: Monad[F]
   implicit val L: LoggingM[F]
 
-  val repo: AnimeRepository[F]
+  val repo: UserRepository[F]
 
-  val model: String = classOf[Anime].getSimpleName
+  val model: String = classOf[User].getSimpleName
 
-  def insert(item: Anime): F[Option[Anime]] =
+  def insert(item: User): F[Option[User]] =
     for {
       _ <- L.debug(s"Trying to insert a $model")
       insertedItem <- repo.insert(item)
       _ <- L.info(s"Tried to add $model")
     } yield insertedItem
 
-  def retrieve(id: Long): F[Option[Anime]] =
+  def retrieve(id: Long): F[Option[User]] =
     for {
       _ <- L.debug(s"Trying to retrieve a $model")
       item <- repo.get(id)
       _ <- L.info(s"Found $model: $item")
     } yield item
 
-  def update(item: Anime): F[Option[Anime]] =
+  def update(item: User): F[Option[User]] =
     for {
       _ <- L.debug(s"Trying to update a $model")
       updatedItem <- repo.update(item)
@@ -61,13 +61,13 @@ trait AnimeService[F[_]] {
       _ <- L.info(s"Tried to delete $model")
     } yield deletedItems
 
-  def batchedInsert(items: List[Anime]): F[List[Option[Anime]]] =
+  def batchedInsert(items: List[User]): F[List[Option[User]]] =
     for {
       _ <- L.debug(s"Trying to insert batch $model")
       insertedItems <- items.traverse(repo.insert)
     } yield insertedItems
 
-  def batchedUpdate(items: List[Anime]): F[List[Option[Anime]]] =
+  def batchedUpdate(items: List[User]): F[List[Option[User]]] =
     for {
       _ <- L.debug(s"Trying to update batch $model")
       updatedItems <- items.traverse(repo.update)
@@ -79,7 +79,7 @@ trait AnimeService[F[_]] {
       destroyedItems <- ids.traverse(repo.delete)
     } yield destroyedItems.sum
 
-  val list: F[List[Anime]] =
+  val list: F[List[User]] =
     for {
       _ <- L.debug(s"Trying to get all $model models")
       items <- repo.list

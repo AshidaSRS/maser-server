@@ -22,9 +22,7 @@ import com.shin.persistence._
 
 @module
 trait Persistence[F[_]] {
-  val mangaRepository: MangaRepository[F]
-  val manhwaRepository: ManhwaRepository[F]
-  val movieRepository: MovieRepository[F]
-  val televisionSerieRepository: TelevisionSerieRepository[F]
-  val animeRepository: AnimeRepository[F]
+  val userRepository: UserRepository[F]
+  val userContentRepository: UserContentRepository[F]
+  val entertainmentRepository: EntertainmentRepository[F]
 }

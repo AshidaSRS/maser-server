@@ -38,25 +38,17 @@ object implicits
 
 trait RepositoryHandlersImplicits {
 
-  implicit def mangaRepositoryHandler[F[_]: Monad](
-      implicit T: Transactor[F]): MangaRepository.Handler[F] =
-    new MangaRepositoryHandler[F]
+  implicit def userRepositoryHandler[F[_]: Monad](
+      implicit T: Transactor[F]): UserRepository.Handler[F] =
+    new UserRepositoryHandler[F]
 
-  implicit def manhwaRepositoryHandler[F[_]: Monad](
-      implicit T: Transactor[F]): ManhwaRepository.Handler[F] =
-    new ManhwaRepositoryHandler[F]
-
-  implicit def movieRepositoryHandler[F[_]: Monad](
-      implicit T: Transactor[F]): MovieRepository.Handler[F] =
-    new MovieRepositoryHandler[F]
-
-  implicit def televisionSerieRepositoryHandler[F[_]: Monad](
-      implicit T: Transactor[F]): TelevisionSerieRepository.Handler[F] =
-    new TelevisionSerieRepositoryHandler[F]
+  implicit def userContentRepositoryHandler[F[_]: Monad](
+      implicit T: Transactor[F]): UserContentRepository.Handler[F] =
+    new UserContentRepositoryHandler[F]
 
   implicit def animeRepositoryHandler[F[_]: Monad](
-      implicit T: Transactor[F]): AnimeRepository.Handler[F] =
-    new AnimeRepositoryHandler[F]
+      implicit T: Transactor[F]): EntertainmentRepository.Handler[F] =
+    new EntertainmentRepositoryHandler[F]
 }
 
 trait DoobieImplicits {

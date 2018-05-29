@@ -19,25 +19,25 @@ package http
 
 import cats.effect.Effect
 import cats.implicits._
-import com.shin.services.ManhwaService
+import com.shin.services.UserContentService
 import io.circe.generic.auto._
 import io.circe.syntax._
 import org.http4s._
 import org.http4s.circe._
 import org.http4s.dsl.Http4sDsl
 
-class ManhwaApi[F[_]: Effect](implicit service: ManhwaService[F])
+class UserContentApi[F[_]: Effect](implicit service: UserContentService[F])
     extends Http4sDsl[F] {
 
   import codecs._
 
-  private val prefix: String = "manhwas"
+  private val prefix: String = "user-contents"
 
   val endpoints: HttpService[F] = HttpService[F] {
     case GET -> Root / `prefix` / IntVar(id) =>
       service.retrieve(id) flatMap { item =>
         item.fold(NotFound(s"Could not find ${service.model} with $id"))(
-          manhwa => Ok(manhwa.asJson))
+          userContent => Ok(userContent.asJson))
       }
 
     case GET -> Root / `prefix` =>
@@ -45,15 +45,15 @@ class ManhwaApi[F[_]: Effect](implicit service: ManhwaService[F])
 
     case req @ POST -> Root / `prefix` =>
       for {
-        manhwa <- req.as[Manhwa]
-        insertedManga <- service.insert(manhwa)
+        userContent <- req.as[UserContent]
+        insertedManga <- service.insert(userContent)
         response <- Ok(insertedManga.asJson)
       } yield response
 
     case req @ PUT -> Root / `prefix` / LongVar(id) =>
       for {
-        manhwa <- req.as[Manhwa]
-        updatedManga <- service.update(manhwa.copy(id = Some(id)))
+        userContent <- req.as[UserContent]
+        updatedManga <- service.update(userContent.copy(id = Some(id)))
         reponse <- Ok(updatedManga.asJson)
       } yield reponse
 
@@ -62,8 +62,9 @@ class ManhwaApi[F[_]: Effect](implicit service: ManhwaService[F])
   }
 }
 
-object ManhwaApi {
+object UserContentApi {
 
   implicit def instance[F[_]: Effect](
-      implicit service: ManhwaService[F]): ManhwaApi[F] = new ManhwaApi[F]
+      implicit service: UserContentService[F]): UserContentApi[F] =
+    new UserContentApi[F]
 }

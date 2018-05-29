@@ -16,20 +16,20 @@
 
 package com.shin.persistence
 
-import com.shin.TelevisionSerie
+import com.shin.User
 import freestyle.tagless.tagless
 
 @tagless(true)
-trait TelevisionSerieRepository[F[_]] {
+trait UserRepository[F[_]] {
 
-  def insert(tv: TelevisionSerie): F[Option[TelevisionSerie]]
+  def insert(anime: User): F[Option[User]]
 
-  def get(id: Long): F[Option[TelevisionSerie]]
+  def get(id: Long): F[Option[User]]
 
   def delete(id: Long): F[Int]
 
-  def update(tv: TelevisionSerie): F[Option[TelevisionSerie]]
+  def update(anime: User): F[Option[User]]
 
-  def list: F[List[TelevisionSerie]]
+  def list: F[List[User]]
 
 }

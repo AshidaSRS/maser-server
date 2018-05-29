@@ -17,34 +17,34 @@
 package com.shin.persistence.runtime
 
 import cats.Monad
+import com.shin.Entertainment
 import doobie.implicits._
 import doobie.util.transactor.Transactor
-import com.shin.TelevisionSerie
-import com.shin.persistence.TelevisionSerieRepository
+import com.shin.persistence.EntertainmentRepository
 
-class TelevisionSerieRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
-    extends TelevisionSerieRepository.Handler[F] {
+class EntertainmentRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
+    extends EntertainmentRepository.Handler[F] {
 
-  import com.shin.persistence.runtime.queries.TelevisionSerieQueries._
+  import com.shin.persistence.runtime.queries.EntertainmentQueries._
 
-  def insert(input: TelevisionSerie): F[Option[TelevisionSerie]] =
+  def insert(input: Entertainment): F[Option[Entertainment]] =
     insertQuery(input)
       .withUniqueGeneratedKeys[Long]("id")
       .flatMap(getQuery(_).option)
       .transact(T)
 
-  def get(id: Long): F[Option[TelevisionSerie]] =
+  def get(id: Long): F[Option[Entertainment]] =
     getQuery(id).option.transact(T)
 
-  def update(tvserie: TelevisionSerie): F[Option[TelevisionSerie]] =
-    updateQuery(tvserie).run
-      .flatMap(_ => getQuery(tvserie.id.get).option)
+  def update(anime: Entertainment): F[Option[Entertainment]] =
+    updateQuery(anime).run
+      .flatMap(_ => getQuery(anime.id.get).option)
       .transact(T)
 
   def delete(id: Long): F[Int] =
     deleteQuery(id).run.transact(T)
 
-  def list: F[List[TelevisionSerie]] =
+  def list: F[List[Entertainment]] =
     listQuery
       .to[List]
       .transact(T)

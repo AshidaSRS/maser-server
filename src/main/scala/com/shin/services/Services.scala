@@ -24,11 +24,9 @@ import freestyle.tagless.module
 
 @module
 trait Services[F[_]] {
-  val mangaService: MangaService[F]
-  val manhwaService: ManhwaService[F]
-  val movieService: MovieService[F]
-  val televisionSerieService: TelevisionSerieService[F]
-  val animeService: AnimeService[F]
+  val userService: UserService[F]
+  val userContentService: UserContentService[F]
+  val entertainmentService: EntertainmentService[F]
   val log: LoggingM[F]
   val config: ConfigM[F]
 }

@@ -16,34 +16,34 @@
 
 package com.shin.persistence.runtime.queries
 
-import com.shin.TelevisionSerie
+import com.shin.Entertainment
 import doobie.implicits.toSqlInterpolator
 import doobie.util.query.Query0
 import doobie.util.update.Update0
 
-object TelevisionSerieQueries {
+object EntertainmentQueries {
 
-  def insertQuery(input: TelevisionSerie): Update0 =
+  def insertQuery(input: Entertainment): Update0 =
     sql"""
-          INSERT INTO "maser"."television_series" (name, year)
-          VALUES (${input.name}, ${input.year})
+          INSERT INTO "maser"."entertainments" (name, rate, model)
+          VALUES (${input.name}, ${input.rate}, ${input.model})
        """.update
 
-  def getQuery(id: Long): Query0[TelevisionSerie] =
-    sql"""SELECT name, year, id, created, updated FROM "maser"."television_series" WHERE id = $id"""
-      .query[TelevisionSerie]
+  def getQuery(id: Long): Query0[Entertainment] =
+    sql"""SELECT name, rate, model, id, created, updated FROM "maser"."entertainments" WHERE id = $id"""
+      .query[Entertainment]
 
-  def updateQuery(input: TelevisionSerie): Update0 =
+  def updateQuery(input: Entertainment): Update0 =
     sql"""
-          UPDATE "maser"."television_series"
-          SET name = ${input.name}, year = ${input.year}
+          UPDATE "maser"."entertainments"
+          SET name = ${input.name}, rate = ${input.rate}
           WHERE id = ${input.id}
        """.update
 
   def deleteQuery(id: Long): Update0 =
-    sql"""DELETE FROM "maser"."television_series" WHERE id = $id""".update
+    sql"""DELETE FROM "maser"."entertainments" WHERE id = $id""".update
 
-  val listQuery: Query0[TelevisionSerie] =
-    sql"""SELECT name, year, id, created, updated FROM "maser"."television_series" ORDER BY id ASC"""
-      .query[TelevisionSerie]
+  val listQuery: Query0[Entertainment] =
+    sql"""SELECT name, rate, model, id, created, updated FROM "maser"."entertainments" ORDER BY id ASC"""
+      .query[Entertainment]
 }

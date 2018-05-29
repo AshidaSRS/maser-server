@@ -19,24 +19,24 @@ package com.shin.persistence.runtime
 import cats.Monad
 import doobie.implicits._
 import doobie.util.transactor.Transactor
-import com.shin.Manhwa
-import com.shin.persistence.ManhwaRepository
+import com.shin.UserContent
+import com.shin.persistence.UserContentRepository
 
-class ManhwaRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
-    extends ManhwaRepository.Handler[F] {
+class UserContentRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
+    extends UserContentRepository.Handler[F] {
 
-  import com.shin.persistence.runtime.queries.ManhwaQueries._
+  import com.shin.persistence.runtime.queries.UserContentQueries._
 
-  def insert(input: Manhwa): F[Option[Manhwa]] =
+  def insert(input: UserContent): F[Option[UserContent]] =
     insertQuery(input)
       .withUniqueGeneratedKeys[Long]("id")
       .flatMap(getQuery(_).option)
       .transact(T)
 
-  def get(id: Long): F[Option[Manhwa]] =
+  def get(id: Long): F[Option[UserContent]] =
     getQuery(id).option.transact(T)
 
-  def update(manhwa: Manhwa): F[Option[Manhwa]] =
+  def update(manhwa: UserContent): F[Option[UserContent]] =
     updateQuery(manhwa).run
       .flatMap(_ => getQuery(manhwa.id.get).option)
       .transact(T)
@@ -44,7 +44,7 @@ class ManhwaRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
   def delete(id: Long): F[Int] =
     deleteQuery(id).run.transact(T)
 
-  def list: F[List[Manhwa]] =
+  def list: F[List[UserContent]] =
     listQuery
       .to[List]
       .transact(T)

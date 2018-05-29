@@ -16,20 +16,20 @@
 
 package com.shin.persistence
 
-import com.shin.Manga
+import com.shin.Entertainment
 import freestyle.tagless.tagless
 
 @tagless(true)
-trait MangaRepository[F[_]] {
+trait EntertainmentRepository[F[_]] {
 
-  def insert(manga: Manga): F[Option[Manga]]
+  def insert(manga: Entertainment): F[Option[Entertainment]]
 
-  def get(id: Long): F[Option[Manga]]
+  def get(id: Long): F[Option[Entertainment]]
 
   def delete(id: Long): F[Int]
 
-  def update(manga: Manga): F[Option[Manga]]
+  def update(manga: Entertainment): F[Option[Entertainment]]
 
-  def list: F[List[Manga]]
+  def list: F[List[Entertainment]]
 
 }

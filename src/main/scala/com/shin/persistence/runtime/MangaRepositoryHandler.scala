@@ -19,24 +19,24 @@ package com.shin.persistence.runtime
 import cats.Monad
 import doobie.implicits._
 import doobie.util.transactor.Transactor
-import com.shin.persistence.MangaRepository
-import com.shin.Manga
+import com.shin.persistence.UserRepository
+import com.shin.User
 
-class MangaRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
-    extends MangaRepository.Handler[F] {
+class UserRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
+    extends UserRepository.Handler[F] {
 
-  import com.shin.persistence.runtime.queries.MangaQueries._
+  import com.shin.persistence.runtime.queries.UserQueries._
 
-  def insert(input: Manga): F[Option[Manga]] =
+  def insert(input: User): F[Option[User]] =
     insertQuery(input)
       .withUniqueGeneratedKeys[Long]("id")
       .flatMap(getQuery(_).option)
       .transact(T)
 
-  def get(id: Long): F[Option[Manga]] =
+  def get(id: Long): F[Option[User]] =
     getQuery(id).option.transact(T)
 
-  def update(manga: Manga): F[Option[Manga]] =
+  def update(manga: User): F[Option[User]] =
     updateQuery(manga).run
       .flatMap(_ => getQuery(manga.id.get).option)
       .transact(T)
@@ -44,7 +44,7 @@ class MangaRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
   def delete(id: Long): F[Int] =
     deleteQuery(id).run.transact(T)
 
-  def list: F[List[Manga]] =
+  def list: F[List[User]] =
     listQuery
       .to[List]
       .transact(T)
