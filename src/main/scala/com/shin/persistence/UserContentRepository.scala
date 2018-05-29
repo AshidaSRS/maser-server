@@ -32,4 +32,6 @@ trait UserContentRepository[F[_]] {
 
   def list: F[List[UserContent]]
 
+  def listByUserId(userId: Long): F[List[UserContent]]
+
 }

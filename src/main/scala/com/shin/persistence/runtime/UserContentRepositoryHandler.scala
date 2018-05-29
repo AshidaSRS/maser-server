@@ -49,4 +49,8 @@ class UserContentRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
       .to[List]
       .transact(T)
 
+  def listByUserId(userId: Long): F[List[UserContent]] =
+    listByUserIdQuery(userId)
+      .to[List]
+      .transact(T)
 }

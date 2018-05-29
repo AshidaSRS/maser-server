@@ -46,4 +46,8 @@ object UserContentQueries {
   val listQuery: Query0[UserContent] =
     sql"""SELECT user_id, entertainment_id, id, created FROM "maser"."user_contents" ORDER BY id ASC"""
       .query[UserContent]
+
+  def listByUserIdQuery(userId: Long): Query0[UserContent] =
+    sql"""SELECT user_id, entertainment_id, id, created FROM "maser"."user_contents" WHERE user_id = $userId"""
+      .query[UserContent]
 }

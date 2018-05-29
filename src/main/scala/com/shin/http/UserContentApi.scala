@@ -34,7 +34,7 @@ class UserContentApi[F[_]: Effect](implicit service: UserContentService[F])
   private val prefix: String = "user-contents"
 
   val endpoints: HttpService[F] = HttpService[F] {
-    case GET -> Root / `prefix` / IntVar(id) =>
+    case GET -> Root / `prefix` / LongVar(id) =>
       service.retrieve(id) flatMap { item =>
         item.fold(NotFound(s"Could not find ${service.model} with $id"))(
           userContent => Ok(userContent.asJson))
@@ -43,18 +43,21 @@ class UserContentApi[F[_]: Effect](implicit service: UserContentService[F])
     case GET -> Root / `prefix` =>
       service.list.flatMap(l => Ok(l.asJson))
 
+    case GET -> Root / `prefix` / "user" / LongVar(userId) =>
+      service.listByUserId(userId).flatMap(l => Ok(l.asJson))
+
     case req @ POST -> Root / `prefix` =>
       for {
         userContent <- req.as[UserContent]
-        insertedManga <- service.insert(userContent)
-        response <- Ok(insertedManga.asJson)
+        insertedUserContent <- service.insert(userContent)
+        response <- Ok(insertedUserContent.asJson)
       } yield response
 
     case req @ PUT -> Root / `prefix` / LongVar(id) =>
       for {
         userContent <- req.as[UserContent]
-        updatedManga <- service.update(userContent.copy(id = Some(id)))
-        reponse <- Ok(updatedManga.asJson)
+        updatedUserContent <- service.update(userContent.copy(id = Some(id)))
+        reponse <- Ok(updatedUserContent.asJson)
       } yield reponse
 
     case DELETE -> Root / `prefix` / LongVar(id) =>

@@ -85,4 +85,11 @@ trait UserContentService[F[_]] {
       items <- repo.list
       _ <- L.info(s"Found all $model models")
     } yield items
+
+  def listByUserId(userId: Long): F[List[UserContent]] =
+    for {
+      _ <- L.debug(s"Try to get all $model models with userId = $userId")
+      items <- repo.listByUserId(userId)
+      _ <- L.info(s"Found all $model models for userId = $userId")
+    } yield items
 }
