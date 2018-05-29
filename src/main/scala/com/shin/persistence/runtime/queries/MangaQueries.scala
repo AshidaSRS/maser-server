@@ -25,25 +25,25 @@ object MangaQueries {
 
   def insertQuery(input: Manga): Update0 =
     sql"""
-          INSERT INTO "maser"."manga" (name, year)
+          INSERT INTO "maser"."mangas" (name, year)
           VALUES (${input.name}, ${input.year})
        """.update
 
   def getQuery(id: Long): Query0[Manga] =
-    sql"""SELECT name, year, id, created, updated FROM "maser"."manga" WHERE id = $id"""
+    sql"""SELECT name, year, id, created, updated FROM "maser"."mangas" WHERE id = $id"""
       .query[Manga]
 
   def updateQuery(input: Manga): Update0 =
     sql"""
-          UPDATE "maser"."manga"
+          UPDATE "maser"."mangas"
           SET name = ${input.name}, year = ${input.year}
           WHERE id = ${input.id}
        """.update
 
   def deleteQuery(id: Long): Update0 =
-    sql"""DELETE FROM "maser"."manga" WHERE id = $id""".update
+    sql"""DELETE FROM "maser"."mangas" WHERE id = $id""".update
 
   val listQuery: Query0[Manga] =
-    sql"""SELECT name, year, id, created, updated FROM "maser"."manga" ORDER BY id ASC"""
+    sql"""SELECT name, year, id, created, updated FROM "maser"."mangas" ORDER BY id ASC"""
       .query[Manga]
 }

@@ -11,7 +11,7 @@ object Dependencies {
   lazy val hikariVersion = "3.2.1"
   lazy val testVersion = "3.0.1"
   lazy val slf4jVersion = "1.6.4"
-  lazy val telegramVersion = "3.0.15-SNAPSHOT"
+  lazy val telegramVersion = "0.5.6"
   lazy val freesVersion = "0.8.0"
   lazy val postgreVersion = "42.1.1"
   lazy val doobieVersion = "0.5.3"
@@ -23,10 +23,6 @@ object Dependencies {
     "com.typesafe.scala-logging" %% "scala-logging" % scalaLoggingVersion,
     "org.slf4j" % "slf4j-simple" % slf4jVersion,
     "org.wvlet" %% "wvlet-log" % coolLogVersion
-  )
-
-  val telegram = Seq(
-    "info.mukel" %% "telegrambot4s" % telegramVersion
   )
 
   val test = Seq(
@@ -77,6 +73,6 @@ object Dependencies {
   )
 
   val core =
-    log ++ telegram ++ test ++ databaseDependencies ++ catsDependencies ++
+    log ++ test ++ databaseDependencies ++ catsDependencies ++
   scalazDependencies ++ freestyleDependencies ++ http ++ json
 }

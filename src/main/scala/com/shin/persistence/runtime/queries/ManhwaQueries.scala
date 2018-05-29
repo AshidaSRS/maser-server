@@ -25,25 +25,25 @@ object ManhwaQueries {
 
   def insertQuery(input: Manhwa): Update0 =
     sql"""
-          INSERT INTO manhwa (name, year)
+          INSERT INTO "maser"."manhwas" (name, year)
           VALUES (${input.name}, ${input.year})
        """.update
 
   def getQuery(id: Long): Query0[Manhwa] =
-    sql"""SELECT name, year, id, created, updated FROM manhwa WHERE id = $id"""
+    sql"""SELECT name, year, id, created, updated FROM "maser"."manhwas" WHERE id = $id"""
       .query[Manhwa]
 
   def updateQuery(input: Manhwa): Update0 =
     sql"""
-          UPDATE manhwa
+          UPDATE "maser"."manhwas"
           SET name = ${input.name}, year = ${input.year}
           WHERE id = ${input.id}
        """.update
 
   def deleteQuery(id: Long): Update0 =
-    sql"""DELETE FROM manhwa WHERE id = $id""".update
+    sql"""DELETE FROM "maser"."manhwas" WHERE id = $id""".update
 
   val listQuery: Query0[Manhwa] =
-    sql"""SELECT name, year, id, created, updated FROM manhwa ORDER BY id ASC"""
+    sql"""SELECT name, year, id, created, updated FROM "maser"."manhwas" ORDER BY id ASC"""
       .query[Manhwa]
 }

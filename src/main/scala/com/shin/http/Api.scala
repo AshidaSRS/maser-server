@@ -22,11 +22,28 @@ import cats.implicits._
 import com.shin.http._
 import org.http4s.implicits._
 
-class Api[F[_]: Effect](implicit mangaApi: MangaApi[F]) {
-  val endpoints = mangaApi.endpoints
+class Api[F[_]: Effect](
+    implicit mangaApi: MangaApi[F],
+    manhwaApi: ManhwaApi[F],
+    movieApi: MovieApi[F],
+    televisionSerieApi: TelevisionSerieApi[F],
+    animeApi: AnimeApi[F]
+) {
+  val endpoints =
+    mangaApi.endpoints <+>
+      manhwaApi.endpoints <+>
+      movieApi.endpoints <+>
+      televisionSerieApi.endpoints <+>
+      animeApi.endpoints
+
 }
 
 object Api {
-  implicit def instance[F[_]: Effect](implicit mangaApi: MangaApi[F]): Api[F] =
-    new Api[F]
+  implicit def instance[F[_]: Effect](
+      implicit mangaApi: MangaApi[F],
+      manhwaApi: ManhwaApi[F],
+      movieApi: MovieApi[F],
+      televisionSerieApi: TelevisionSerieApi[F],
+      animeApi: AnimeApi[F]
+  ): Api[F] = new Api[F]
 }

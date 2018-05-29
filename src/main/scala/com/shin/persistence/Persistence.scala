@@ -14,11 +14,17 @@
  * limitations under the License.
  */
 
-package com.shin.persistence
+package com.shin
+package persistence
 
 import freestyle.tagless.module
+import com.shin.persistence._
 
 @module
 trait Persistence[F[_]] {
   val mangaRepository: MangaRepository[F]
+  val manhwaRepository: ManhwaRepository[F]
+  val movieRepository: MovieRepository[F]
+  val televisionSerieRepository: TelevisionSerieRepository[F]
+  val animeRepository: AnimeRepository[F]
 }

@@ -25,25 +25,25 @@ object TelevisionSerieQueries {
 
   def insertQuery(input: TelevisionSerie): Update0 =
     sql"""
-          INSERT INTO television_series (name, year)
+          INSERT INTO "maser"."television_series" (name, year)
           VALUES (${input.name}, ${input.year})
        """.update
 
   def getQuery(id: Long): Query0[TelevisionSerie] =
-    sql"""SELECT name, year, id, created, updated FROM television_series WHERE id = $id"""
+    sql"""SELECT name, year, id, created, updated FROM "maser"."television_series" WHERE id = $id"""
       .query[TelevisionSerie]
 
   def updateQuery(input: TelevisionSerie): Update0 =
     sql"""
-          UPDATE television_series
+          UPDATE "maser"."television_series"
           SET name = ${input.name}, year = ${input.year}
           WHERE id = ${input.id}
        """.update
 
   def deleteQuery(id: Long): Update0 =
-    sql"""DELETE FROM television_series WHERE id = $id""".update
+    sql"""DELETE FROM "maser"."television_series" WHERE id = $id""".update
 
   val listQuery: Query0[TelevisionSerie] =
-    sql"""SELECT name, year, id, created, updated FROM television_series ORDER BY id ASC"""
+    sql"""SELECT name, year, id, created, updated FROM "maser"."television_series" ORDER BY id ASC"""
       .query[TelevisionSerie]
 }

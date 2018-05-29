@@ -1,5 +1,5 @@
-CREATE TABLE "manga" (
-    "id" bigint,
+CREATE TABLE "mangas" (
+    "id" serial,
     "name" text,
     "year" int,
     "created" timestamp DEFAULT current_date,
@@ -7,8 +7,8 @@ CREATE TABLE "manga" (
     PRIMARY KEY ("id")
 );
 
-CREATE TABLE "anime" (
-    "id" bigint,
+CREATE TABLE "animes" (
+    "id" serial,
     "name" text,
     "year" int,
     "created" timestamp DEFAULT current_date,
@@ -16,8 +16,8 @@ CREATE TABLE "anime" (
     PRIMARY KEY ("id")
 );
 
-CREATE TABLE "manhwa" (
-    "id" bigint,
+CREATE TABLE "manhwas" (
+    "id" serial,
     "name" text,
     "year" int,
     "created" timestamp DEFAULT current_date,
@@ -25,8 +25,8 @@ CREATE TABLE "manhwa" (
     PRIMARY KEY ("id")
 );
 
-CREATE TABLE "television_serie" (
-    "id" bigint,
+CREATE TABLE "television_series" (
+    "id" serial,
     "name" text,
     "year" int,
     "created" timestamp DEFAULT current_date,
@@ -34,8 +34,8 @@ CREATE TABLE "television_serie" (
     PRIMARY KEY ("id")
 );
 
-CREATE TABLE "movie" (
-    "id" bigint,
+CREATE TABLE "movies" (
+    "id" serial,
     "name" text,
     "year" int,
     "created" timestamp DEFAULT current_date,

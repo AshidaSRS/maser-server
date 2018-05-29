@@ -15,26 +15,22 @@
  */
 
 import cats.effect.{Effect, IO}
-import cats.syntax.either._
 import cats.syntax.flatMap._
 import cats.syntax.functor._
 import com.shin.http.Api
 import com.shin.persistence.Persistence
 import com.shin.services.Services
+import com.shin.utils.SchemaMigration
+import com.typesafe.config._
 import doobie.util.transactor.Transactor
 import freestyle.tagless.config.ConfigM
 import freestyle.tagless.config.implicits._
-import freestyle.tagless.effects.error.ErrorM
-import freestyle.tagless.effects.error.implicits._
 import freestyle.tagless.logging.LoggingM
 import freestyle.tagless.loggingJVM.log4s.implicits._
 import freestyle.tagless.module
 import fs2.StreamApp
 import org.http4s.HttpService
-import org.http4s.implicits._
 import org.http4s.server.blaze.BlazeBuilder
-import com.shin.utils.SchemaMigration
-import com.typesafe.config._
 
 @module
 trait App[F[_]] {
@@ -48,8 +44,10 @@ object MainApp extends StreamApp[IO] {
 
   override def stream(
       args: List[String],
-      requestShutdown: IO[Unit]): fs2.Stream[IO, StreamApp.ExitCode] =
+      requestShutdown: IO[Unit]): fs2.Stream[IO, StreamApp.ExitCode] = {
+    SchemaMigration.doMigration(ConfigFactory.load())
     bootstrap[IO].unsafeRunSync()
+  }
 
   def bootstrap[F[_]: Effect](
       implicit app: App[F],
@@ -59,8 +57,6 @@ object MainApp extends StreamApp[IO] {
     val services: HttpService[F] = api.endpoints
     val log: LoggingM[F] = app.services.log
     val config: ConfigM[F] = app.services.config
-
-    SchemaMigration.doMigration(ConfigFactory.load())
 
     for {
       _ <- log.info("Trying to load application.conf")

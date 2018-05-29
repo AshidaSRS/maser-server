@@ -19,25 +19,25 @@ package http
 
 import cats.effect.Effect
 import cats.implicits._
-import com.shin.services.MangaService
+import com.shin.services.AnimeService
 import io.circe.generic.auto._
 import io.circe.syntax._
 import org.http4s._
 import org.http4s.circe._
 import org.http4s.dsl.Http4sDsl
 
-class MangaApi[F[_]: Effect](implicit service: MangaService[F])
+class AnimeApi[F[_]: Effect](implicit service: AnimeService[F])
     extends Http4sDsl[F] {
 
   import codecs._
 
-  private val prefix: String = "mangas"
+  private val prefix: String = "animes"
 
   val endpoints: HttpService[F] = HttpService[F] {
     case GET -> Root / `prefix` / IntVar(id) =>
       service.retrieve(id) flatMap { item =>
         item.fold(NotFound(s"Could not find ${service.model} with $id"))(
-          manga => Ok(manga.asJson))
+          anime => Ok(anime.asJson))
       }
 
     case GET -> Root / `prefix` =>
@@ -45,16 +45,16 @@ class MangaApi[F[_]: Effect](implicit service: MangaService[F])
 
     case req @ POST -> Root / `prefix` =>
       for {
-        manga <- req.as[Manga]
-        insertedManga <- service.insert(manga)
-        response <- Ok(insertedManga.asJson)
+        anime <- req.as[Anime]
+        insertedAnime <- service.insert(anime)
+        response <- Ok(insertedAnime.asJson)
       } yield response
 
     case req @ PUT -> Root / `prefix` / IntVar(id) =>
       for {
-        manga <- req.as[Manga]
-        updatedManga <- service.update(manga.copy(id = Some(id)))
-        reponse <- Ok(updatedManga.asJson)
+        anime <- req.as[Anime]
+        updatedAnime <- service.update(anime.copy(id = Some(id)))
+        reponse <- Ok(updatedAnime.asJson)
       } yield reponse
 
     case DELETE -> Root / `prefix` / IntVar(id) =>
@@ -62,8 +62,8 @@ class MangaApi[F[_]: Effect](implicit service: MangaService[F])
   }
 }
 
-object MangaApi {
+object AnimeApi {
 
   implicit def instance[F[_]: Effect](
-      implicit service: MangaService[F]): MangaApi[F] = new MangaApi[F]
+      implicit service: AnimeService[F]): AnimeApi[F] = new AnimeApi[F]
 }
