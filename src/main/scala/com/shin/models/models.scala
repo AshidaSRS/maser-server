@@ -34,7 +34,7 @@ final case class Entertainment(
 
 final case class User(
     alias: String,
-    telegram: String,
+    telegramId: Long,
     id: Option[Long] = None,
     created: Option[Timestamp] = None,
     updated: Option[Timestamp] = None

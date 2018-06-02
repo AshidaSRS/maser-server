@@ -26,7 +26,7 @@ object UserQueries {
   def insertQuery(input: User): Update0 =
     sql"""
           INSERT INTO "maser"."users" (alias, telegram)
-          VALUES (${input.alias}, ${input.telegram})
+          VALUES (${input.alias}, ${input.telegramId})
        """.update
 
   def getQuery(id: Long): Query0[User] =
@@ -36,7 +36,7 @@ object UserQueries {
   def updateQuery(input: User): Update0 =
     sql"""
           UPDATE "maser"."users"
-          SET alias = ${input.alias}, telegram = ${input.telegram}
+          SET alias = ${input.alias}, telegram = ${input.telegramId}
           WHERE id = ${input.id}
        """.update
 

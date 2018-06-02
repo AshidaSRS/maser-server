@@ -23,6 +23,8 @@ import doobie.util.update.Update0
 
 object EntertainmentQueries {
 
+  val table = """"maser"."entertainments""""
+
   def insertQuery(input: Entertainment): Update0 =
     sql"""
           INSERT INTO "maser"."entertainments" (name, rate, model)
@@ -46,4 +48,9 @@ object EntertainmentQueries {
   val listQuery: Query0[Entertainment] =
     sql"""SELECT name, rate, model, id, created, updated FROM "maser"."entertainments" ORDER BY id ASC"""
       .query[Entertainment]
+
+  def getLikeNameQuery(name: String): Query0[Entertainment] =
+    sql"""SELECT name, rate, model, id, created, updated FROM "maser"."entertainments" WHERE LOWER(name) ~ ${name.toLowerCase}"""
+      .query[Entertainment]
+
 }

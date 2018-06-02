@@ -32,4 +32,6 @@ trait EntertainmentRepository[F[_]] {
 
   def list: F[List[Entertainment]]
 
+  def getLikeName(name: String): F[List[Entertainment]]
+
 }

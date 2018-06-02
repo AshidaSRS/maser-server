@@ -11,7 +11,7 @@ create table "entertainments" (
 create table "users" (
     "id" serial,
     "alias" text not null,
-    "telegram" text not null,
+    "telegram_id" bigint not null,
     "created" timestamp default current_date,
     "updated" timestamp default current_date,
     primary key ("id")

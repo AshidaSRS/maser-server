@@ -87,4 +87,11 @@ trait EntertainmentService[F[_]] {
       items <- repo.list
       _ <- L.info(s"Found all $model models")
     } yield items
+
+  def retrieveLikeName(name: String): F[List[Entertainment]] =
+    for {
+      _ <- L.info(s"Trying to get all $model models with name like $name")
+      items <- repo.getLikeName(name)
+      _ <- L.info(s"Found all $model models with name like $name")
+    } yield items
 }

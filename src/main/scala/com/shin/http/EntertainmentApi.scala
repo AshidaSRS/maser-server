@@ -31,6 +31,8 @@ class EntertainmentApi[F[_]: Effect](implicit service: EntertainmentService[F])
 
   import codecs._
 
+  object NameQueryParamMatcher extends QueryParamDecoderMatcher[String]("name")
+
   private val prefix: String = "entertainments"
 
   val endpoints: HttpService[F] = HttpService[F] {
@@ -39,6 +41,9 @@ class EntertainmentApi[F[_]: Effect](implicit service: EntertainmentService[F])
         item.fold(NotFound(s"Could not find ${service.model} with $id"))(
           entertainment => Ok(entertainment.asJson))
       }
+
+    case GET -> Root / `prefix` :? NameQueryParamMatcher(name) =>
+      service.retrieveLikeName(name).flatMap(l => Ok(l.asJson))
 
     case GET -> Root / `prefix` =>
       service.list.flatMap(l => Ok(l.asJson))
@@ -60,6 +65,7 @@ class EntertainmentApi[F[_]: Effect](implicit service: EntertainmentService[F])
 
     case DELETE -> Root / `prefix` / IntVar(id) =>
       service.destroy(id) *> Ok()
+
   }
 }
 

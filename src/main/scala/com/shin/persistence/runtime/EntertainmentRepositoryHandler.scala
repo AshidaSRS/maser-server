@@ -49,4 +49,9 @@ class EntertainmentRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
       .to[List]
       .transact(T)
 
+  def getLikeName(name: String): F[List[Entertainment]] =
+    getLikeNameQuery(name)
+      .to[List]
+      .transact(T)
+
 }
