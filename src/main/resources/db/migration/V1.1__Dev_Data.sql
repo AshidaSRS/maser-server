@@ -7,7 +7,7 @@ VALUES
 (5,E'Test Anime 2',2,E'anime',E'2018-05-30 00:00:00',E'2018-05-30 00:00:00'),
 (6,E'Test Anime sdfsadf effsdfsadfsf ewf sfsd fwe fe',5,E'anime',E'2018-05-30 00:00:00',E'2018-05-30 00:00:00');
 
-INSERT INTO "maser"."users"("id","alias","telegram","created","updated")
+INSERT INTO "maser"."users"("id","alias","telegram_id","created","updated")
 VALUES
 (1,E'@Ashida',E'1',E'2018-06-03 00:00:00',E'2018-06-03 00:00:00'),
 (2,E'@Cuwano',E'2',E'2018-06-03 00:00:00',E'2018-06-03 00:00:00');

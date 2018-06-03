@@ -25,18 +25,18 @@ object UserQueries {
 
   def insertQuery(input: User): Update0 =
     sql"""
-          INSERT INTO "maser"."users" (alias, telegram)
+          INSERT INTO "maser"."users" (alias, telegram_id)
           VALUES (${input.alias}, ${input.telegramId})
        """.update
 
   def getQuery(id: Long): Query0[User] =
-    sql"""SELECT alias, telegram, id, created, updated FROM "maser"."users" WHERE id = $id"""
+    sql"""SELECT alias, telegram_id, id, created, updated FROM "maser"."users" WHERE id = $id"""
       .query[User]
 
   def updateQuery(input: User): Update0 =
     sql"""
           UPDATE "maser"."users"
-          SET alias = ${input.alias}, telegram = ${input.telegramId}
+          SET alias = ${input.alias}, telegram_id = ${input.telegramId}
           WHERE id = ${input.id}
        """.update
 
@@ -44,6 +44,6 @@ object UserQueries {
     sql"""DELETE FROM "maser"."users" WHERE id = $id""".update
 
   val listQuery: Query0[User] =
-    sql"""SELECT alias, telegram, id, created, updated FROM "maser"."users" ORDER BY id ASC"""
+    sql"""SELECT alias, telegram_id, id, created, updated FROM "maser"."users" ORDER BY id ASC"""
       .query[User]
 }
