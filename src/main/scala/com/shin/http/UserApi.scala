@@ -36,8 +36,11 @@ class UserApi[F[_]: Effect](implicit service: UserService[F])
   val endpoints: HttpService[F] = HttpService[F] {
     case GET -> Root / `prefix` / IntVar(id) =>
       service.retrieve(id) flatMap { item =>
-        item.fold(NotFound(s"Could not find ${service.model} with $id"))(user =>
-          Ok(user.asJson))
+        item.fold(NotFound(None.asJson))(user => Ok(user.asJson))
+      }
+    case GET -> Root / `prefix` / "telegram" / LongVar(id) =>
+      service.retrieveByTelegramId(id) flatMap { item =>
+        item.fold(Ok(None.asJson))(user => Ok(user.asJson))
       }
 
     case GET -> Root / `prefix` =>
@@ -50,14 +53,14 @@ class UserApi[F[_]: Effect](implicit service: UserService[F])
         response <- Ok(insertedUser.asJson)
       } yield response
 
-    case req @ PUT -> Root / `prefix` / IntVar(id) =>
+    case req @ PUT -> Root / `prefix` / LongVar(id) =>
       for {
         user <- req.as[User]
         updatedUser <- service.update(user.copy(id = Some(id)))
         reponse <- Ok(updatedUser.asJson)
       } yield reponse
 
-    case DELETE -> Root / `prefix` / IntVar(id) =>
+    case DELETE -> Root / `prefix` / LongVar(id) =>
       service.destroy(id) *> Ok()
   }
 }

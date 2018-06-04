@@ -36,6 +36,9 @@ class UserRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
   def get(id: Long): F[Option[User]] =
     getQuery(id).option.transact(T)
 
+  def getByTelegramId(tId: Long): F[Option[User]] =
+    getByTelegramIdQuery(tId).option.transact(T)
+
   def update(manga: User): F[Option[User]] =
     updateQuery(manga).run
       .flatMap(_ => getQuery(manga.id.get).option)

@@ -26,6 +26,8 @@ trait UserRepository[F[_]] {
 
   def get(id: Long): F[Option[User]]
 
+  def getByTelegramId(id: Long): F[Option[User]]
+
   def delete(id: Long): F[Int]
 
   def update(anime: User): F[Option[User]]

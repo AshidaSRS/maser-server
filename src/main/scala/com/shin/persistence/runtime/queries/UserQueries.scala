@@ -33,6 +33,10 @@ object UserQueries {
     sql"""SELECT alias, telegram_id, id, created, updated FROM "maser"."users" WHERE id = $id"""
       .query[User]
 
+  def getByTelegramIdQuery(tId: Long): Query0[User] =
+    sql"""SELECT alias, telegram_id, id, created, updated FROM "maser"."users" WHERE telegram_id = $tId"""
+      .query[User]
+
   def updateQuery(input: User): Update0 =
     sql"""
           UPDATE "maser"."users"

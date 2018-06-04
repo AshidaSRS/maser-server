@@ -47,6 +47,13 @@ trait UserService[F[_]] {
       _ <- L.info(s"Found $model: $item")
     } yield item
 
+  def retrieveByTelegramId(tId: Long): F[Option[User]] =
+    for {
+      _ <- L.debug(s"Trying to retrieve a $model with telegramId = $tId")
+      item <- repo.getByTelegramId(tId)
+      _ <- L.info(s"Found $model: $item")
+    } yield item
+
   def update(item: User): F[Option[User]] =
     for {
       _ <- L.debug(s"Trying to update a $model")
