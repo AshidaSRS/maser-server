@@ -46,3 +46,12 @@ final case class UserContent(
     id: Option[Long],
     created: Option[Timestamp] = None
 ) extends Entity
+
+final case class Recommendation(
+    recommenderId: Long,
+    entertainmentId: Long,
+    recommendedId: Long,
+    id: Option[Long],
+    created: Option[Timestamp] = None,
+    updated: Option[Timestamp] = None
+) extends Entity

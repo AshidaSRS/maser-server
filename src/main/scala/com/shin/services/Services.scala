@@ -27,6 +27,7 @@ trait Services[F[_]] {
   val userService: UserService[F]
   val userContentService: UserContentService[F]
   val entertainmentService: EntertainmentService[F]
+  val recommendationService: RecommendationService[F]
   val log: LoggingM[F]
   val config: ConfigM[F]
 }

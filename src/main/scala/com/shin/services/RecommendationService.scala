@@ -18,43 +18,36 @@ package com.shin.services
 
 import cats.Monad
 import cats.implicits._
-import com.shin.User
-import com.shin.persistence.UserRepository
+import com.shin.Recommendation
+import com.shin.persistence.RecommendationRepository
 import freestyle.tagless._
 import freestyle.tagless.logging.LoggingM
 
 @module
-trait UserService[F[_]] {
+trait RecommendationService[F[_]] {
 
   implicit val M: Monad[F]
   implicit val L: LoggingM[F]
 
-  val repo: UserRepository[F]
+  val repo: RecommendationRepository[F]
 
-  val model: String = classOf[User].getSimpleName
+  val model: String = classOf[Recommendation].getSimpleName
 
-  def insert(item: User): F[Option[User]] =
+  def insert(item: Recommendation): F[Option[Recommendation]] =
     for {
       _ <- L.debug(s"Trying to insert a $model")
       insertedItem <- repo.insert(item)
       _ <- L.info(s"Tried to add $model")
     } yield insertedItem
 
-  def retrieve(id: Long): F[Option[User]] =
+  def retrieve(id: Long): F[Option[Recommendation]] =
     for {
       _ <- L.debug(s"Trying to retrieve a $model")
       item <- repo.get(id)
       _ <- L.info(s"Found $model: $item")
     } yield item
 
-  def retrieveByTelegramId(tId: Long): F[Option[User]] =
-    for {
-      _ <- L.debug(s"Trying to retrieve a $model with telegramId = $tId")
-      item <- repo.getByTelegramId(tId)
-      _ <- L.info(s"Found $model: $item")
-    } yield item
-
-  def update(item: User): F[Option[User]] =
+  def update(item: Recommendation): F[Option[Recommendation]] =
     for {
       _ <- L.debug(s"Trying to update a $model")
       updatedItem <- repo.update(item)
@@ -68,13 +61,15 @@ trait UserService[F[_]] {
       _ <- L.info(s"Tried to delete $model")
     } yield deletedItems
 
-  def batchedInsert(items: List[User]): F[List[Option[User]]] =
+  def batchedInsert(
+      items: List[Recommendation]): F[List[Option[Recommendation]]] =
     for {
       _ <- L.debug(s"Trying to insert batch $model")
       insertedItems <- items.traverse(repo.insert)
     } yield insertedItems
 
-  def batchedUpdate(items: List[User]): F[List[Option[User]]] =
+  def batchedUpdate(
+      items: List[Recommendation]): F[List[Option[Recommendation]]] =
     for {
       _ <- L.debug(s"Trying to update batch $model")
       updatedItems <- items.traverse(repo.update)
@@ -86,10 +81,39 @@ trait UserService[F[_]] {
       destroyedItems <- ids.traverse(repo.delete)
     } yield destroyedItems.sum
 
-  val list: F[List[User]] =
+  val list: F[List[Recommendation]] =
     for {
       _ <- L.debug(s"Trying to get all $model models")
       items <- repo.list
+      _ <- L.info(s"Found all $model models")
+    } yield items
+
+  def listByRecommendedId(recommendedId: Long): F[List[Recommendation]] =
+    for {
+      _ <- L.debug(s"Trying to get all $model models")
+      items <- repo.listByRecommededId(recommendedId)
+      _ <- L.info(s"Found all $model models")
+    } yield items
+
+  def listByRecommenderId(recommenderId: Long): F[List[Recommendation]] =
+    for {
+      _ <- L.debug(s"Trying to get all $model models")
+      items <- repo.listByRecommederId(recommenderId)
+      _ <- L.info(s"Found all $model models")
+    } yield items
+
+  def listByEntertainmentId(entertainmentId: Long): F[List[Recommendation]] =
+    for {
+      _ <- L.debug(s"Trying to get all $model models")
+      items <- repo.listByEntertainmentId(entertainmentId)
+      _ <- L.info(s"Found all $model models")
+    } yield items
+
+  def listByIds(recommenderId: Long,
+                recommendedId: Long): F[List[Recommendation]] =
+    for {
+      _ <- L.debug(s"Trying to get all $model models")
+      items <- repo.listByIds(recommenderId, recommendedId)
       _ <- L.info(s"Found all $model models")
     } yield items
 }

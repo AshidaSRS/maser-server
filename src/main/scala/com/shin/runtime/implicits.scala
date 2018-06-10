@@ -49,6 +49,10 @@ trait RepositoryHandlersImplicits {
   implicit def animeRepositoryHandler[F[_]: Monad](
       implicit T: Transactor[F]): EntertainmentRepository.Handler[F] =
     new EntertainmentRepositoryHandler[F]
+
+  implicit def recommendationRepositoryHandler[F[_]: Monad](
+      implicit T: Transactor[F]): RecommendationRepository.Handler[F] =
+    new RecommendationRepositoryHandler[F]
 }
 
 trait DoobieImplicits {

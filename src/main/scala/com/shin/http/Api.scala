@@ -25,12 +25,14 @@ import org.http4s.implicits._
 class Api[F[_]: Effect](
     implicit userApi: UserApi[F],
     userContentApi: UserContentApi[F],
-    entertainmentApi: EntertainmentApi[F]
+    entertainmentApi: EntertainmentApi[F],
+    recommendationApi: RecommendationApi[F]
 ) {
   val endpoints =
     userApi.endpoints <+>
       userContentApi.endpoints <+>
-      entertainmentApi.endpoints
+      entertainmentApi.endpoints <+>
+      recommendationApi.endpoints
 
 }
 
@@ -38,6 +40,7 @@ object Api {
   implicit def instance[F[_]: Effect](
       implicit userApi: UserApi[F],
       userContentApi: UserContentApi[F],
-      entertainmentApi: EntertainmentApi[F]
+      entertainmentApi: EntertainmentApi[F],
+      recommendationApi: RecommendationApi[F]
   ): Api[F] = new Api[F]
 }

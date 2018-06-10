@@ -50,4 +50,11 @@ object codecs {
   implicit def userDecoder[F[_]: Sync]: EntityDecoder[F, User] =
     jsonOf[F, User]
 
+  implicit def recommendationEncoder[F[_]: Applicative]
+    : EntityEncoder[F, Recommendation] =
+    jsonEncoderOf[F, Recommendation]
+  implicit def recommendationDecoder[F[_]: Sync]
+    : EntityDecoder[F, Recommendation] =
+    jsonOf[F, Recommendation]
+
 }

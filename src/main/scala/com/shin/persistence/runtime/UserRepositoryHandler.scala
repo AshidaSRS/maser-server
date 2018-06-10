@@ -17,10 +17,10 @@
 package com.shin.persistence.runtime
 
 import cats.Monad
+import com.shin.User
+import com.shin.persistence.UserRepository
 import doobie.implicits._
 import doobie.util.transactor.Transactor
-import com.shin.persistence.UserRepository
-import com.shin.User
 
 class UserRepositoryHandler[F[_]: Monad](implicit T: Transactor[F])
     extends UserRepository.Handler[F] {

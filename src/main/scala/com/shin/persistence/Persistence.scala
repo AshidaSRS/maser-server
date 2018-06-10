@@ -22,7 +22,7 @@ import com.shin.persistence._
 
 @module
 trait Persistence[F[_]] {
-  val userRepository: UserRepository[F]
+  val userRepository: RecommendationRepository[F]
   val userContentRepository: UserContentRepository[F]
   val entertainmentRepository: EntertainmentRepository[F]
 }
